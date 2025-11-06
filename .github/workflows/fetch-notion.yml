@@ -22,8 +22,8 @@ jobs:
       - name: Create scripts directory
         run: mkdir -p scripts
         
-      - name: Create content directory
-        run: mkdir -p content/docs
+      - name: Create docs directory
+        run: mkdir -p src/app/docs
         
       - name: Run Notion fetcher
         env:

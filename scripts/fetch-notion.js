@@ -82,9 +82,8 @@ function blockToMarkdown(block) {
 function slugify(text) {
   return text
     .toLowerCase()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/[\s_-]+/g, '-')
-    .replace(/^-+|-+$/g, '');
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
 }
 
 async function processBlocks(blocks) {
@@ -92,6 +91,8 @@ async function processBlocks(blocks) {
   let currentH1 = null;
   let currentH2 = null;
   let currentContent = '';
+  let navigation = [];
+  let currentSection = null;
   
   for (const block of blocks) {
     if (block.type === 'heading_1') {
@@ -99,8 +100,14 @@ async function processBlocks(blocks) {
       if (currentH2) {
         await saveContent(currentH2.title, currentH2.content);
       } else if (currentH1) {
-        await saveContent(currentH1.title, currentContent);
+        await saveContent(currentH1.title, currentH1.content + currentContent);
       }
+      
+      if (currentSection) navigation.push(currentSection);
+      currentSection = {
+        title: formatRichText(block.heading_1.rich_text),
+        links: []
+      };
       
       currentH1 = {
         title: formatRichText(block.heading_1.rich_text),
@@ -113,6 +120,13 @@ async function processBlocks(blocks) {
       // Save previous content if exists
       if (currentH2) {
         await saveContent(currentH2.title, currentH2.content);
+      }
+      
+      if (currentSection) {
+        currentSection.links.push({
+          title: formatRichText(block.heading_2.rich_text),
+          href: '/docs/' + slugify(formatRichText(block.heading_2.rich_text))
+        });
       }
       
       currentH2 = {
@@ -135,8 +149,10 @@ async function processBlocks(blocks) {
   if (currentH2) {
     await saveContent(currentH2.title, currentH2.content);
   } else if (currentH1) {
-    await saveContent(currentH1.title, currentContent);
+    await saveContent(currentH1.title, currentH1.content + currentContent);
   }
+  
+  if (currentSection) navigation.push(currentSection);
   
   // Save headings summary
   const headingsSummary = headings.map(h => 
@@ -144,8 +160,14 @@ async function processBlocks(blocks) {
   ).join('\n');
   
   await fs.writeFile(
-    path.join(process.cwd(), 'content/docs/headings-summary.md'),
+    path.join(process.cwd(), 'src/app/docs/headings-summary.md'),
     headingsSummary
+  );
+  
+  // Save navigation
+  await fs.writeFile(
+    path.join(process.cwd(), 'src/app/docs/navigation.json'),
+    JSON.stringify(navigation, null, 2)
   );
 }
 
@@ -153,10 +175,9 @@ async function saveContent(title, content) {
   if (!title || !content) return;
   
   const slug = slugify(title);
-  await fs.writeFile(
-    path.join(process.cwd(), `content/docs/${slug}.md`),
-    content
-  );
+  const filePath = path.join(process.cwd(), 'src/app/docs', slug, 'page.md');
+  await fs.mkdir(path.dirname(filePath), { recursive: true });
+  await fs.writeFile(filePath, content);
 }
 
 async function main() {
