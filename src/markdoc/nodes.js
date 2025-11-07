@@ -4,6 +4,7 @@ import yaml from 'js-yaml'
 
 import { DocsLayout } from '@/components/DocsLayout'
 import { Fence } from '@/components/Fence'
+import { ZoomableImage } from '@/components/ZoomableImage'
 
 let documentSlugifyMap = new Map()
 
@@ -57,6 +58,18 @@ const nodes = {
         type: String,
       },
     },
+  },
+  image: {
+    ...defaultNodes.image,
+    render: ZoomableImage,
+    transform(node, config) {
+      const attributes = node.transformAttributes(config)
+      return new Tag(this.render, {
+        src: attributes.src,
+        alt: attributes.alt,
+        caption: attributes.title
+      })
+    }
   },
 }
 
