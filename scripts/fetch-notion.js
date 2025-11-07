@@ -191,9 +191,6 @@ async function saveContent(title, content) {
 async function main() {
   try {
     console.log('Fetching Notion data...');
-    console.log(process.env.NOTION_PAGE_ID);
-    console.log(process.env.NOTION_TOKEN);
-    
     const blocks = await fetchBlockChildren(process.env.NOTION_PAGE_ID);
     
     console.log('Processing blocks and creating files...');
