@@ -30,7 +30,7 @@ jobs:
       - name: Run Notion fetcher
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
-          NOTION_PAGE_ID: ${{ variable.NOTION_PAGE_ID }}
+          NOTION_PAGE_ID: ${{ vars.NOTION_PAGE_ID }}
         run: |
           node scripts/fetch-notion.js
 
