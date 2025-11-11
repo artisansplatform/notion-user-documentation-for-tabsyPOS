@@ -167,11 +167,6 @@ async function processBlocks(blocks) {
     `${h.level === 1 ? '#' : '##'} ${h.title}`
   ).join('\n');
   
-  await fs.writeFile(
-    path.join(process.cwd(), 'src/app/docs/headings-summary.md'),
-    headingsSummary
-  );
-  
   // Save navigation
   const navigationContent = `export const navigation = ${JSON.stringify(navigation, null, 2)}\n`;
   await fs.writeFile(
