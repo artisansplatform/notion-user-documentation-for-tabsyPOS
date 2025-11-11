@@ -64,6 +64,11 @@ For best results, structure your Notion documentation page as follows:
             - Images
 ```
 
+### For the Documentation
+
+- [User Documentation for TabyPOS](https://toothsome-brazil-8f4.notion.site/User-Documentation-For-TabyPOS-29a733089d918041a179d54da8c1187a)
+- Refer to this documentation for an overview of the structure.
+
 ### Navigation Generation Rules:
 
 - **Heading 1 (H1)**: Creates a section in the navigation sidebar
