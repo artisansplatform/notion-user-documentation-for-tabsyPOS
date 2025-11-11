@@ -51,4 +51,3 @@ jobs:
           labels: |
             automated
             notion
-          delete-branch: true
