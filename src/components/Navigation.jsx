@@ -1,24 +1,13 @@
+ 'use client'
+
+import { navigation as navigationData } from '@/lib/navigation'
+import clsx from 'clsx'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import clsx from 'clsx'
-import { useState, useEffect } from 'react'
 
 export function Navigation({ className, onLinkClick }) {
   let pathname = usePathname()
-  const [navigation, setNavigation] = useState([])
-
-  useEffect(() => {
-    fetch('/api/navigation')
-      .then(res => res.json())
-      .then(data => {
-        if (data.error) {
-          console.error('Error fetching navigation:', data.error)
-        } else {
-          setNavigation(data)
-        }
-      })
-      .catch(err => console.error('Fetch error:', err))
-  }, [])
+  const navigation = navigationData
 
   return (
     <nav className={clsx('text-base lg:text-sm', className)}>

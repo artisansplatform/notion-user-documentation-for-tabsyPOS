@@ -1,5 +1,10 @@
 'use client'
 
+import { search } from '@/markdoc/search.mjs'
+import { createAutocomplete } from '@algolia/autocomplete-core'
+import { Dialog, DialogPanel } from '@headlessui/react'
+import clsx from 'clsx'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import {
   forwardRef,
   Fragment,
@@ -11,10 +16,6 @@ import {
   useState,
 } from 'react'
 import Highlighter from 'react-highlight-words'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
-import { createAutocomplete } from '@algolia/autocomplete-core'
-import { Dialog, DialogPanel } from '@headlessui/react'
-import clsx from 'clsx'
 
 function SearchIcon(props) {
   return (
@@ -60,18 +61,24 @@ function useAutocomplete({ close }) {
       },
       getSources({ query }) {
         if (!query) return Promise.resolve([])
-        return fetch(`/api/search?q=${encodeURIComponent(query)}&limit=5`)
-          .then(res => res.json())
-          .then(results => [{
-            sourceId: 'documentation',
-            getItems() {
-              return results
+        try {
+          const results = search(query, { limit: 20 })
+          const sliced = results.slice(0, 5)
+          return Promise.resolve([
+            {
+              sourceId: 'documentation',
+              getItems() {
+                return sliced
+              },
+              getItemUrl({ item }) {
+                return item.url
+              },
+              onSelect: navigate,
             },
-            getItemUrl({ item }) {
-              return item.url
-            },
-            onSelect: navigate,
-          }])
+          ])
+        } catch (err) {
+          return Promise.resolve([])
+        }
       },
     }),
   )

@@ -1,19 +1,4 @@
-import { navigation } from '@/lib/navigation';
+// Navigation API removed to allow static export.
+// Navigation is now provided directly from `src/lib/navigation.js`.
 
-export async function GET() {
-  try {
-    return new Response(JSON.stringify(navigation), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  } catch (error) {
-    return new Response(JSON.stringify({ error: 'Failed to load navigation' }), {
-      status: 500,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-  }
-}
+export const __removed_for_static_export = true
