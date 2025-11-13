@@ -3,6 +3,3 @@ dist
 .next
 .env
 src/app/docs
-src/app/docs/
-.open-next
-.wrangler
