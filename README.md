@@ -39,12 +39,34 @@ This project includes a GitHub Actions workflow that automatically fetches conte
 - Click on **"New repository secret"**
 - **Name**: `NOTION_TOKEN`
 - **Value**: Your Notion Integration Token (e.g., `secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`)
+- **How to get your Notion Token**:
+    1. Go to [https://www.notion.so/my-integrations](https://www.notion.so/my-integrations)
+    2. Click **"+ New integration"**
+    3. Give your integration a name (e.g., "Documentation Site")
+    4. Select the workspace where your documentation page is located
+    5. Click **"Submit"** to create the integration
+    6. Copy the **"Internal Integration Token"** (starts with `secret_`)
+    7. Go to your Notion documentation page
+    8. Click the **"..."** menu in the top right
+    9. Scroll to **"Connections"** or **"Add connections"**
+    10. Search for and select your integration name to grant it access to the page
 
 #### Add Variable:
 - Click on the **"Variables"** tab
 - Click on **"New repository variable"**
 - **Name**: `NOTION_PAGE_ID`
 - **Value**: Your Notion page ID (e.g., `xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`)
+- **How to get your Notion Page ID**:
+    1. Open your Notion documentation page in your browser
+    2. Look at the URL in your browser's address bar
+    3. The page ID is the 32-character string at the end of the URL
+    4. **Example URL format**:
+        - `https://www.notion.so/My-Page-Title-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
+        - The page ID is: `xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx`
+    5. Alternatively, you can copy the page link:
+        - Click the **"..."** menu in the top right of your Notion page
+        - Select **"Copy link"**
+        - The page ID is the last part of the copied URL (after the last dash or before the query parameters)
 
 ### Running the Workflow
 
@@ -97,7 +119,7 @@ For best results, structure your Notion documentation page as follows:
 
 ### For the Documentation
 
-- [User Documentation for TabyPOS](https://toothsome-brazil-8f4.notion.site/User-Documentation-For-TabyPOS-29a733089d918041a179d54da8c1187a)
+- [User Documentation for TabsyPOS](https://toothsome-brazil-8f4.notion.site/User-Documentation-For-TabsyPOS-29a733089d918041a179d54da8c1187a)
 - Refer to this documentation for an overview of the structure.
 
 ### Navigation Generation Rules:
@@ -152,6 +174,43 @@ npm run dev
 ```
 
 Finally, open [http://localhost:3000](http://localhost:3000) in your browser to view the website.
+
+### Build for Production (Static Export)
+
+This project is configured to generate a **static build** that can be deployed to any static hosting service.
+
+To create a production build:
+
+```bash
+npm run build
+```
+
+This command will:
+- Generate optimized static HTML files for all documentation pages
+- Create a static export in the `out/` directory
+- Optimize images and assets for production
+- Generate client-side JavaScript bundles
+- Pre-render all routes at build time
+
+**Important Notes:**
+- This is a **static site generation (SSG)** - all pages are generated at build time
+- Make sure to run `npm run fetch-notion` before building to ensure you have the latest content
+- The build output will be in the `out/` directory
+- You can test the production build locally by serving the `out/` directory with any static file server
+
+### Serve Production Build Locally
+
+After building, you can test the production build locally:
+
+```bash
+npm start
+```
+
+Or use any static file server:
+
+```bash
+npx serve out
+```
 
 ## Global search
 
