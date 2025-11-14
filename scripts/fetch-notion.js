@@ -34,33 +34,40 @@ function slugify(text) {
  */
 async function fetchImageBlockMetadata(blockId) {
   try {
-    const { results } = await notion.blocks.children.list({
-      block_id: blockId,
-    });
+    let cursor = undefined;
+    do {
+      const response = await notion.blocks.children.list({
+        block_id: blockId,
+        start_cursor: cursor,
+      });
+      const { results, has_more, next_cursor } = response;
 
-    for (const block of results) {
-      // If it's an image block, store its metadata
-      if (block.type === 'image') {
-        const imageUrl = block.image.type === 'file' 
-          ? block.image.file.url 
-          : block.image.external?.url;
-        
-        if (imageUrl) {
-          // Extract the base URL without query parameters for matching
-          const baseUrl = imageUrl.split('?')[0];
-          imageBlockMetadata.set(baseUrl, {
-            lastEditedTime: block.last_edited_time,
-            blockId: block.id
-          });
-          console.log(`Stored metadata for image: ${block.last_edited_time}`);
+      for (const block of results) {
+        // If it's an image block, store its metadata
+        if (block.type === 'image') {
+          const imageUrl = block.image.type === 'file' 
+            ? block.image.file.url 
+            : block.image.external?.url;
+          
+          if (imageUrl) {
+            // Extract the base URL without query parameters for matching
+            const baseUrl = imageUrl.split('?')[0];
+            imageBlockMetadata.set(baseUrl, {
+              lastEditedTime: block.last_edited_time,
+              blockId: block.id
+            });
+            console.log(`Stored metadata for image: ${block.last_edited_time}`);
+          }
+        }
+
+        // Recursively fetch children if the block has any
+        if (block.has_children) {
+          await fetchImageBlockMetadata(block.id);
         }
       }
 
-      // Recursively fetch children if the block has any
-      if (block.has_children) {
-        await fetchImageBlockMetadata(block.id);
-      }
-    }
+      cursor = has_more ? next_cursor : undefined;
+    } while (cursor);
   } catch (error) {
     console.error(`Error fetching block metadata for ${blockId}:`, error.message);
   }
