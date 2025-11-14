@@ -162,6 +162,18 @@ async function downloadImage(imageUrl, h1Slug) {
 
     // Save the image
     const localPath = path.join(imagesDir, filename);
+    
+    // Check if the image is already up to date
+    try {
+      await fs.access(localPath);
+      console.log(`Image already up to date: ${filename}`);
+      const publicPath = `/images/docs/${h1Slug}/${filename}`;
+      imageCache.set(cacheKey, publicPath);
+      return publicPath;
+    } catch (error) {
+      // File does not exist, proceed to download
+    }
+    
     await fs.writeFile(localPath, buffer);
 
     // Store the local URL path (for use in markdown)
@@ -321,15 +333,6 @@ async function main() {
     const mdString = n2m.toMarkdownString(mdblocks).parent;
     
     console.log('Processing markdown and creating files...');
-    
-    // Clean up old images directory before downloading new ones
-    const imagesDir = path.join(process.cwd(), 'public/images/docs');
-    try {
-      await fs.rm(imagesDir, { recursive: true, force: true });
-      console.log('Cleaned up old images directory');
-    } catch (error) {
-      // Directory might not exist, which is fine
-    }
     
     await processMarkdown(mdString);
     
