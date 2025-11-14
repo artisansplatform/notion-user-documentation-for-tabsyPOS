@@ -1,18 +1,21 @@
-# History
-
 ## Sales History
 
+
+
 The **Sales History** section provides a complete record of all past transactions, helping you track sales performance and access important details whenever needed.
+
 
 To view your transaction history, go to the **Sales History** tab. Each record displays essential information such as the **date of sale**, **customer name**, **products purchased**, and **payment details**.
 
 At the top of the page, you’ll see three summary tabs — **Today’s Sales**, **This Month**, and **This Year** — which display the total number of transactions for each period. These tabs give you a quick snapshot of your store’s performance at a glance, without affecting or filtering the detailed transaction list below.
 
+
 You can open any transaction to **review individual cart items** or **reprint receipts** whenever required. Even without an internet connection, all sales data remains safely stored on your device, ensuring uninterrupted access and reliability.
 
 
-![](https://prod-files-secure.s3.us-west-2.amazonaws.com/56573308-9d91-81b8-a293-00031742ed1f/46dfb4a7-2a8d-46b8-9321-be7707779868/Sales_History.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664NSZDOA3%2F20251107%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251107T065736Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEO7%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJGMEQCIAMag%2BRw40ydZ40yb2%2F%2FJV1ZBxqJPo9nz1WPsrHBUfkoAiBMZ47tK%2BPYwb9%2BPrjUg1pcbX9A6kYpNDdRMKKMRK9%2FXSqIBAi3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2F8BEAAaDDYzNzQyMzE4MzgwNSIM8niAqSTPYqkVj6a6KtwDZqGk4XzL2BoJ1zkCDodXGjAjjlTrf9I0I1mIbNVAZ1zVGcHTjYbqRcijWTkDNJUQ2ApnD%2BUSkYCq05KdkLefMqqfaldBlu72o70pHKR3NruJZC4im%2Bl4wv3mz5mygVyxYvQoxFp5RUJefRI0rJc4a9d%2B09dN1eBAOPW1dXFQeqeQw%2FWRE0QHGAMa53dU1WRn75BVBOBopcSze0WlMQqJGdrPLMIUNeMd1s772mShH%2Bv2X9QLiUL7Hq0efQwrim%2B6iYVVWE7%2BJeY0TAbe73FkAZEzVBIbXuNwN7ozkb0UvkMAAGD7%2Bn2UNTHteIyMnEnf0SY5WQLxWVAMFxecLILUt8Pmx9qEsJOhZ8GgcC8gLEtXnWZDwDeTwh%2FsjuVYumCVIT%2Bptr%2B26Jq%2Ff%2BCksXxutxmcMT2i6b%2BKHj12fPImSJ1jC7vx2IqWHvYcW%2FzoHHjTrawG3RGPp8KYLL8FarYqmYNAccC2QhF9vcowRyFI5JHVDAX%2BtT%2BpurMd8vggpfo0zuhx%2FdaFrefs5DxBM52Pyx%2FWeFO%2FZ3EQymOUUURT%2FKU5dk4SnbVxsU0x7GCexxy5m09dbkw%2F8qwcScDEuemogClYBjJ8v3eUcc2FbCtHHsSQBYo7Ll%2FpvbTha6cw5Y%2B2yAY6pgETUG11h4QKlauEsFYakeZU2pHWsX%2FJFhDh8CjvJu7g6RAbuc7ploj7PhVd6DrqqSgojOK46DnAGGa%2B9w5UPx11T2nCcEcolrUSQnMTUAsXFE1q7psyvaoCswGz8ubMZPhMz4ss6GRgKFJM%2Bre3ZFdn6xgLA96R65CoRAJA9j6oVVqapZXc0h2c6S6jU%2BxX9llr2LzX1WXkkc1GrLkHeLC2iZajMXGy&X-Amz-Signature=e9c859688818e283837780135507733d162a54b98ac04e87af1ee8e69fc1b6db&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
+![TabsyPOS-Smart-POS-System-11-12-2025_02_38_PM.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/05b1525b-e076-4e17-8c88-1e0bf77252dd/d70fb8dc-3afa-4dfc-a3d3-af98fc476fee/TabsyPOS-Smart-POS-System-11-12-2025_02_38_PM.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4664F3YP73V%2F20251114%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20251114T130945Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjEJ3%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJHMEUCIEtOb4a%2FyhqcmoqVcfXIcmuY7A5Hxt1GFirV2lVIi5zDAiEAmuDznznYM2d%2Fk5EaUBg82qqU6jqMAH9qnyk9v1Wm2xIq%2FwMIZRAAGgw2Mzc0MjMxODM4MDUiDIbphtNY6HuagWTG4CrcA76fU4Q8aZXNnaevg1057os6YUhjmpT9zWhBu%2BhtIEB6cwg77tFGYrd7qwn9ZFFTnMAJzZ%2BfhsLL3N8bfCZ0hEnaVeaiVhZFGnaL7kNERJCx5O6UDbN8sMSo9PAEo16%2Fig7FsrAC7NHN3xQHYwD%2BXwH1Wg%2Fa7gZLmdxDmCERvY4u9K6lvzaFu0iBGpnolM%2FVRknQiVllBm0pRjggcnq1irjz04y%2BM3bGtIXh7RX2%2Bfp246aoaqs6%2Bcfm07qcO9jKFlzFoeGxdSRWm%2BFpfGBGpdYBIqClK5k%2F6uE6mTxmJKlkOk%2Bs%2BQGHwwKMwyS7S75wAI2uYSFIfuyxARd5vEUe%2Bn1N4ZfS9IVI84oYHAUVO0rMUCrtlUcFFdvsxpXS%2FrGz%2B1bTgDLL4U%2BakXfQKL7L9wIchWKdo9Ffxs1TfVPaabS110%2F9MiN%2FpxM4Z0dAvnr0cTLloq%2F4Hd98hc8KV%2FZTWAgnxfyw2bfFcH%2BNZVlwouRc3DwG1xYDadEndUEKNK4a2cYBBJRp4Zkk%2F9nIjn95p%2BPNasKc%2BqQ7L4ZIlIEXN07yFOB6tifmwOdmBBd4GZKJeKC9trLiU6d7p2Jm178XzjHgtE8UUWRscahoVWkuz7l8RG%2Bje7zgcJLyZieUMOe83MgGOqUBfqJw7NJGpkqh0yxrANmb%2BCSj2bC%2FgvngPvMPrnkHs59utENoafN0AAIloabbRnrUeTwrt8a0hlw3OKo4OIYdkZxfXXg%2BRemn0ZECUxK2%2F4honsRAtZpOoBTaseEBRWGGgUw99rcxMdHyC5VVplacsRAv7QUHPLgTm9ZDklfsiDo9No4JgzU6cAy0rBIu6qE04atyVf%2FifUG9NkTPruDlxpDT4c90&X-Amz-Signature=74ad2fb40b52f5662026ff755b72539336ec84909197154f48ee7e0db7a9cd3f&X-Amz-SignedHeaders=host&x-amz-checksum-mode=ENABLED&x-id=GetObject)
 
 
 ---
+
 
