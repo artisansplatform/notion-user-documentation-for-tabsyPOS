@@ -12,19 +12,82 @@ import { Client } from '@notionhq/client';
 import { NotionToMarkdown } from 'notion-to-md';
 import fs from 'fs/promises';
 import path from 'path';
-import crypto from 'crypto';
 
 // Initialize the Notion client with authentication token from environment variables
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
 // Store for tracking downloaded images
 const imageCache = new Map();
+// Store for mapping image URLs to their block metadata
+const imageBlockMetadata = new Map();
 
 function slugify(text) {
   return text
     .toLowerCase()
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-|-$/g, '');
+}
+
+/**
+ * Recursively fetch all blocks and store image block metadata
+ * @param {string} blockId - The block ID to fetch children from
+ */
+async function fetchImageBlockMetadata(blockId) {
+  try {
+    const { results } = await notion.blocks.children.list({
+      block_id: blockId,
+    });
+
+    for (const block of results) {
+      // If it's an image block, store its metadata
+      if (block.type === 'image') {
+        const imageUrl = block.image.type === 'file' 
+          ? block.image.file.url 
+          : block.image.external?.url;
+        
+        if (imageUrl) {
+          // Extract the base URL without query parameters for matching
+          const baseUrl = imageUrl.split('?')[0];
+          imageBlockMetadata.set(baseUrl, {
+            lastEditedTime: block.last_edited_time,
+            blockId: block.id
+          });
+          console.log(`Stored metadata for image: ${block.last_edited_time}`);
+        }
+      }
+
+      // Recursively fetch children if the block has any
+      if (block.has_children) {
+        await fetchImageBlockMetadata(block.id);
+      }
+    }
+  } catch (error) {
+    console.error(`Error fetching block metadata for ${blockId}:`, error.message);
+  }
+}
+
+/**
+ * Get the last edited time for an image URL
+ * @param {string} imageUrl - The image URL
+ * @returns {string|null} - The last edited time or null if not found
+ */
+function getImageLastEditedTime(imageUrl) {
+  // Try to match with or without query parameters
+  const baseUrl = imageUrl.split('?')[0];
+  
+  // First try exact match
+  if (imageBlockMetadata.has(baseUrl)) {
+    return imageBlockMetadata.get(baseUrl).lastEditedTime;
+  }
+  
+  // Try to find a partial match
+  for (const [storedUrl, metadata] of imageBlockMetadata.entries()) {
+    if (storedUrl.includes(baseUrl) || baseUrl.includes(storedUrl)) {
+      return metadata.lastEditedTime;
+    }
+  }
+  
+  return null;
 }
 
 /**
@@ -70,9 +133,21 @@ async function downloadImage(imageUrl, h1Slug) {
       }
     }
 
-    // Generate a unique filename based on the URL hash
-    const hash = crypto.createHash('md5').update(imageUrl).digest('hex');
-    const filename = `${hash}.${extension}`;
+    // Get the last edited time from metadata
+    const lastEditedTime = getImageLastEditedTime(imageUrl);
+    let filename;
+    
+    if (lastEditedTime) {
+      // Use the last_edited_time as filename
+      filename = `${lastEditedTime}.${extension}`;
+      console.log(`Using timestamp filename: ${filename}`);
+    } else {
+      // Fallback to original hash-based naming if metadata not found
+      const crypto = await import('crypto');
+      const hash = crypto.createHash('md5').update(imageUrl).digest('hex');
+      filename = `${hash}.${extension}`;
+      console.warn(`Metadata not found for image, using hash: ${filename}`);
+    }
     
     // Create the images directory if it doesn't exist
     const imagesDir = path.join(process.cwd(), 'public/images/docs', h1Slug);
@@ -228,6 +303,12 @@ async function saveContent(title, content, h1Slug) {
 async function main() {
   try {
     console.log('Fetching Notion data...');
+    
+    // First, fetch all image block metadata
+    console.log('Fetching image block metadata...');
+    await fetchImageBlockMetadata(process.env.NOTION_PAGE_ID);
+    console.log(`Found ${imageBlockMetadata.size} image blocks`);
+    
     const n2m = new NotionToMarkdown({ notionClient: notion });
     const mdblocks = await n2m.pageToMarkdown(process.env.NOTION_PAGE_ID);
     const mdString = n2m.toMarkdownString(mdblocks).parent;
