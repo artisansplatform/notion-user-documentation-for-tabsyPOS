@@ -12,13 +12,14 @@ import { Client } from '@notionhq/client';
 import { NotionToMarkdown } from 'notion-to-md';
 import fs from 'fs/promises';
 import path from 'path';
-import crypto from 'crypto';
 
 // Initialize the Notion client with authentication token from environment variables
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 
 // Store for tracking downloaded images
 const imageCache = new Map();
+// Store for mapping image URLs to their block metadata
+const imageBlockMetadata = new Map();
 
 function slugify(text) {
   return text
@@ -28,14 +29,85 @@ function slugify(text) {
 }
 
 /**
+ * Recursively fetch all blocks and store image block metadata
+ * @param {string} blockId - The block ID to fetch children from
+ */
+async function fetchImageBlockMetadata(blockId) {
+  try {
+    let cursor = undefined;
+    do {
+      const response = await notion.blocks.children.list({
+        block_id: blockId,
+        start_cursor: cursor,
+      });
+      const { results, has_more, next_cursor } = response;
+
+      for (const block of results) {
+        // If it's an image block, store its metadata
+        if (block.type === 'image') {
+          const imageUrl = block.image.type === 'file' 
+            ? block.image.file.url 
+            : block.image.external?.url;
+          
+          if (imageUrl) {
+            // Extract the base URL without query parameters for matching
+            const baseUrl = imageUrl.split('?')[0];
+            imageBlockMetadata.set(baseUrl, {
+              lastEditedTime: block.last_edited_time,
+              blockId: block.id
+            });
+            console.log(`Stored metadata for image: ${block.last_edited_time}`);
+          }
+        }
+
+        // Recursively fetch children if the block has any
+        if (block.has_children) {
+          await fetchImageBlockMetadata(block.id);
+        }
+      }
+
+      cursor = has_more ? next_cursor : undefined;
+    } while (cursor);
+  } catch (error) {
+    console.error(`Error fetching block metadata for ${blockId}:`, error.message);
+  }
+}
+
+/**
+ * Get the last edited time for an image URL
+ * @param {string} imageUrl - The image URL
+ * @returns {string|null} - The last edited time or null if not found
+ */
+function getImageLastEditedTime(imageUrl) {
+  // Try to match with or without query parameters
+  const baseUrl = imageUrl.split('?')[0];
+  
+  // First try exact match
+  if (imageBlockMetadata.has(baseUrl)) {
+    return imageBlockMetadata.get(baseUrl).lastEditedTime;
+  }
+  
+  // Try to find a partial match
+  for (const [storedUrl, metadata] of imageBlockMetadata.entries()) {
+    if (storedUrl.includes(baseUrl) || baseUrl.includes(storedUrl)) {
+      return metadata.lastEditedTime;
+    }
+  }
+  
+  return null;
+}
+
+/**
  * Download an image from a URL and save it locally
  * @param {string} imageUrl - The URL of the image to download
+ * @param {string} h1Slug - The slug of the heading 1 for folder organization
  * @returns {Promise<string>} - The local path to the saved image
  */
-async function downloadImage(imageUrl) {
+async function downloadImage(imageUrl, h1Slug) {
+  const cacheKey = `${h1Slug}-${imageUrl}`;
   // Check if we've already downloaded this image
-  if (imageCache.has(imageUrl)) {
-    return imageCache.get(imageUrl);
+  if (imageCache.has(cacheKey)) {
+    return imageCache.get(cacheKey);
   }
 
   try {
@@ -68,21 +140,45 @@ async function downloadImage(imageUrl) {
       }
     }
 
-    // Generate a unique filename based on the URL hash
-    const hash = crypto.createHash('md5').update(imageUrl).digest('hex');
-    const filename = `${hash}.${extension}`;
+    // Get the last edited time from metadata
+    const lastEditedTime = getImageLastEditedTime(imageUrl);
+    let filename;
+    
+    if (lastEditedTime) {
+      // Use the last_edited_time as filename
+      filename = `${lastEditedTime}.${extension}`;
+      console.log(`Using timestamp filename: ${filename}`);
+    } else {
+      // Fallback to original hash-based naming if metadata not found
+      const crypto = await import('crypto');
+      const hash = crypto.createHash('md5').update(imageUrl).digest('hex');
+      filename = `${hash}.${extension}`;
+      console.warn(`Metadata not found for image, using hash: ${filename}`);
+    }
     
     // Create the images directory if it doesn't exist
-    const imagesDir = path.join(process.cwd(), 'public/images/docs');
+    const imagesDir = path.join(process.cwd(), 'public/images/docs', h1Slug);
     await fs.mkdir(imagesDir, { recursive: true });
 
     // Save the image
     const localPath = path.join(imagesDir, filename);
+    
+    // Check if the image is already up to date
+    try {
+      await fs.access(localPath);
+      console.log(`Image already up to date: ${filename}`);
+      const publicPath = `/images/docs/${h1Slug}/${filename}`;
+      imageCache.set(cacheKey, publicPath);
+      return publicPath;
+    } catch (error) {
+      // File does not exist, proceed to download
+    }
+    
     await fs.writeFile(localPath, buffer);
 
     // Store the local URL path (for use in markdown)
-    const publicPath = `/images/docs/${filename}`;
-    imageCache.set(imageUrl, publicPath);
+    const publicPath = `/images/docs/${h1Slug}/${filename}`;
+    imageCache.set(cacheKey, publicPath);
 
     console.log(`Downloaded image: ${filename}`);
     return publicPath;
@@ -97,7 +193,7 @@ async function downloadImage(imageUrl) {
  * @param {string} content - The markdown content
  * @returns {Promise<string>} - The processed markdown with local image paths
  */
-async function processImagesInMarkdown(content) {
+async function processImagesInMarkdown(content, h1Slug) {
   // Match markdown image syntax: ![alt](url)
   const imageRegex = /!\[(.*?)\]\((https?:\/\/[^\)]+)\)/g;
   const images = [];
@@ -114,7 +210,7 @@ async function processImagesInMarkdown(content) {
 
   // Download all images and replace URLs
   for (const image of images) {
-    const localPath = await downloadImage(image.url);
+    const localPath = await downloadImage(image.url, h1Slug);
     content = content.replace(image.url, localPath);
   }
 
@@ -126,12 +222,10 @@ async function processMarkdown(mdString) {
     mdString = mdString.parent;
   }
   
-  // Process images first before splitting into lines
-  mdString = await processImagesInMarkdown(mdString);
-  
   const lines = mdString.split('\n');
   const headings = [];
   let currentH1 = null;
+  let currentH1Slug = null;
   let currentH2 = null;
   let currentContent = '';
   let navigation = [];
@@ -145,9 +239,9 @@ async function processMarkdown(mdString) {
     const line = lines[i];
     if (line.startsWith('# ')) {
       if (currentH2) {
-        await saveContent(currentH2.title, currentH2.content);
+        await saveContent(currentH2.title, currentH2.content, currentH1Slug);
       } else if (currentH1) {
-        await saveContent(currentH1.title, currentH1.content + currentContent);
+        await saveContent(currentH1.title, currentH1.content + currentContent, currentH1Slug);
       }
       
       if (currentSection) navigation.push(currentSection);
@@ -162,12 +256,13 @@ async function processMarkdown(mdString) {
         title: h1Title,
         content: line + '\n\n'
       };
+      currentH1Slug = slugify(cleanMarkdown(h1Title));
       currentH2 = null;
       currentContent = '';
       headings.push({ level: 1, title: currentH1.title });
     } else if (line.startsWith('## ')) {
       if (currentH2) {
-        await saveContent(currentH2.title, currentH2.content);
+        await saveContent(currentH2.title, currentH2.content, currentH1Slug);
       }
       
       const h2Title = line.substring(3).trim();
@@ -194,9 +289,9 @@ async function processMarkdown(mdString) {
   }
   
   if (currentH2) {
-    await saveContent(currentH2.title, currentH2.content);
+    await saveContent(currentH2.title, currentH2.content, currentH1Slug);
   } else if (currentH1) {
-    await saveContent(currentH1.title, currentH1.content + currentContent);
+    await saveContent(currentH1.title, currentH1.content + currentContent, currentH1Slug);
   }
   
   if (currentSection) navigation.push(currentSection);
@@ -212,11 +307,11 @@ async function processMarkdown(mdString) {
   );
 }
 
-async function saveContent(title, content) {
+async function saveContent(title, content, h1Slug) {
   if (!title || !content) return;
   
   // Process images in the content before saving
-  content = await processImagesInMarkdown(content);
+  content = await processImagesInMarkdown(content, h1Slug);
   
   const slug = slugify(title);
   const filePath = path.join(process.cwd(), 'src/app/docs', slug, 'page.md');
@@ -227,22 +322,42 @@ async function saveContent(title, content) {
 async function main() {
   try {
     console.log('Fetching Notion data...');
+    
+    // First, fetch all image block metadata
+    console.log('Fetching image block metadata...');
+    await fetchImageBlockMetadata(process.env.NOTION_PAGE_ID);
+    console.log(`Found ${imageBlockMetadata.size} image blocks`);
+    
     const n2m = new NotionToMarkdown({ notionClient: notion });
     const mdblocks = await n2m.pageToMarkdown(process.env.NOTION_PAGE_ID);
     const mdString = n2m.toMarkdownString(mdblocks).parent;
     
     console.log('Processing markdown and creating files...');
     
-    // Clean up old images directory before downloading new ones
-    const imagesDir = path.join(process.cwd(), 'public/images/docs');
-    try {
-      await fs.rm(imagesDir, { recursive: true, force: true });
-      console.log('Cleaned up old images directory');
-    } catch (error) {
-      // Directory might not exist, which is fine
-    }
-    
     await processMarkdown(mdString);
+    
+    // Cleanup old images
+    const imagesDirs = new Map();
+    for (const [cacheKey, publicPath] of imageCache.entries()) {
+      const h1Slug = cacheKey.split('-')[0];
+      if (!imagesDirs.has(h1Slug)) imagesDirs.set(h1Slug, new Set());
+      const filename = path.basename(publicPath);
+      imagesDirs.get(h1Slug).add(filename);
+    }
+    for (const [h1Slug, currentFilenames] of imagesDirs.entries()) {
+      const imagesDir = path.join(process.cwd(), 'public/images/docs', h1Slug);
+      try {
+        const files = await fs.readdir(imagesDir);
+        for (const file of files) {
+          if (!currentFilenames.has(file)) {
+            await fs.unlink(path.join(imagesDir, file));
+            console.log(`Deleted old image: ${file}`);
+          }
+        }
+      } catch (error) {
+        // Directory doesn't exist or error reading it
+      }
+    }
     
     console.log(`Done! Files have been created and ${imageCache.size} images downloaded.`);
   } catch (error) {
