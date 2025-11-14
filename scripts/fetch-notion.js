@@ -336,6 +336,29 @@ async function main() {
     
     await processMarkdown(mdString);
     
+    // Cleanup old images
+    const imagesDirs = new Map();
+    for (const [cacheKey, publicPath] of imageCache.entries()) {
+      const h1Slug = cacheKey.split('-')[0];
+      if (!imagesDirs.has(h1Slug)) imagesDirs.set(h1Slug, new Set());
+      const filename = path.basename(publicPath);
+      imagesDirs.get(h1Slug).add(filename);
+    }
+    for (const [h1Slug, currentFilenames] of imagesDirs.entries()) {
+      const imagesDir = path.join(process.cwd(), 'public/images/docs', h1Slug);
+      try {
+        const files = await fs.readdir(imagesDir);
+        for (const file of files) {
+          if (!currentFilenames.has(file)) {
+            await fs.unlink(path.join(imagesDir, file));
+            console.log(`Deleted old image: ${file}`);
+          }
+        }
+      } catch (error) {
+        // Directory doesn't exist or error reading it
+      }
+    }
+    
     console.log(`Done! Files have been created and ${imageCache.size} images downloaded.`);
   } catch (error) {
     console.error('Error:', error);
