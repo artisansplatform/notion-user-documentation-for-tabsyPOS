@@ -30,12 +30,14 @@ function slugify(text) {
 /**
  * Download an image from a URL and save it locally
  * @param {string} imageUrl - The URL of the image to download
+ * @param {string} h1Slug - The slug of the heading 1 for folder organization
  * @returns {Promise<string>} - The local path to the saved image
  */
-async function downloadImage(imageUrl) {
+async function downloadImage(imageUrl, h1Slug) {
+  const cacheKey = `${h1Slug}-${imageUrl}`;
   // Check if we've already downloaded this image
-  if (imageCache.has(imageUrl)) {
-    return imageCache.get(imageUrl);
+  if (imageCache.has(cacheKey)) {
+    return imageCache.get(cacheKey);
   }
 
   try {
@@ -73,7 +75,7 @@ async function downloadImage(imageUrl) {
     const filename = `${hash}.${extension}`;
     
     // Create the images directory if it doesn't exist
-    const imagesDir = path.join(process.cwd(), 'public/images/docs');
+    const imagesDir = path.join(process.cwd(), 'public/images/docs', h1Slug);
     await fs.mkdir(imagesDir, { recursive: true });
 
     // Save the image
@@ -81,8 +83,8 @@ async function downloadImage(imageUrl) {
     await fs.writeFile(localPath, buffer);
 
     // Store the local URL path (for use in markdown)
-    const publicPath = `/images/docs/${filename}`;
-    imageCache.set(imageUrl, publicPath);
+    const publicPath = `/images/docs/${h1Slug}/${filename}`;
+    imageCache.set(cacheKey, publicPath);
 
     console.log(`Downloaded image: ${filename}`);
     return publicPath;
@@ -97,7 +99,7 @@ async function downloadImage(imageUrl) {
  * @param {string} content - The markdown content
  * @returns {Promise<string>} - The processed markdown with local image paths
  */
-async function processImagesInMarkdown(content) {
+async function processImagesInMarkdown(content, h1Slug) {
   // Match markdown image syntax: ![alt](url)
   const imageRegex = /!\[(.*?)\]\((https?:\/\/[^\)]+)\)/g;
   const images = [];
@@ -114,7 +116,7 @@ async function processImagesInMarkdown(content) {
 
   // Download all images and replace URLs
   for (const image of images) {
-    const localPath = await downloadImage(image.url);
+    const localPath = await downloadImage(image.url, h1Slug);
     content = content.replace(image.url, localPath);
   }
 
@@ -126,12 +128,10 @@ async function processMarkdown(mdString) {
     mdString = mdString.parent;
   }
   
-  // Process images first before splitting into lines
-  mdString = await processImagesInMarkdown(mdString);
-  
   const lines = mdString.split('\n');
   const headings = [];
   let currentH1 = null;
+  let currentH1Slug = null;
   let currentH2 = null;
   let currentContent = '';
   let navigation = [];
@@ -145,9 +145,9 @@ async function processMarkdown(mdString) {
     const line = lines[i];
     if (line.startsWith('# ')) {
       if (currentH2) {
-        await saveContent(currentH2.title, currentH2.content);
+        await saveContent(currentH2.title, currentH2.content, currentH1Slug);
       } else if (currentH1) {
-        await saveContent(currentH1.title, currentH1.content + currentContent);
+        await saveContent(currentH1.title, currentH1.content + currentContent, currentH1Slug);
       }
       
       if (currentSection) navigation.push(currentSection);
@@ -162,12 +162,13 @@ async function processMarkdown(mdString) {
         title: h1Title,
         content: line + '\n\n'
       };
+      currentH1Slug = slugify(cleanMarkdown(h1Title));
       currentH2 = null;
       currentContent = '';
       headings.push({ level: 1, title: currentH1.title });
     } else if (line.startsWith('## ')) {
       if (currentH2) {
-        await saveContent(currentH2.title, currentH2.content);
+        await saveContent(currentH2.title, currentH2.content, currentH1Slug);
       }
       
       const h2Title = line.substring(3).trim();
@@ -194,9 +195,9 @@ async function processMarkdown(mdString) {
   }
   
   if (currentH2) {
-    await saveContent(currentH2.title, currentH2.content);
+    await saveContent(currentH2.title, currentH2.content, currentH1Slug);
   } else if (currentH1) {
-    await saveContent(currentH1.title, currentH1.content + currentContent);
+    await saveContent(currentH1.title, currentH1.content + currentContent, currentH1Slug);
   }
   
   if (currentSection) navigation.push(currentSection);
@@ -212,11 +213,11 @@ async function processMarkdown(mdString) {
   );
 }
 
-async function saveContent(title, content) {
+async function saveContent(title, content, h1Slug) {
   if (!title || !content) return;
   
   // Process images in the content before saving
-  content = await processImagesInMarkdown(content);
+  content = await processImagesInMarkdown(content, h1Slug);
   
   const slug = slugify(title);
   const filePath = path.join(process.cwd(), 'src/app/docs', slug, 'page.md');
