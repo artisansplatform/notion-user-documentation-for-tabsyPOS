@@ -19,7 +19,10 @@ This demo data is temporary and can be cleared anytime using the **Clear Data** 
 
 
 
-![Sales_Demo_Data.png](/images/docs/introduction/generating-sample-data/2025-11-17T07:13:00.000Z.png)
+![Sales_Demo_Data.png](/images/docs/introduction/generating-sample-data/2025-11-17T12:06:00.000Z.png)
+
+
+![image.png](/images/docs/introduction/generating-sample-data/2025-11-17T12:06:00.000Z-1.png)
 
 
 ---
