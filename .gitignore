@@ -4,3 +4,4 @@ out
 .next
 .env
 src/app/docs
+public/images/docs/

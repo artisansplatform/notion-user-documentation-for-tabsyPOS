@@ -20,6 +20,8 @@ const notion = new Client({ auth: process.env.NOTION_TOKEN });
 const imageCache = new Map();
 // Store for mapping image URLs to their block metadata
 const imageBlockMetadata = new Map();
+// Store for tracking filename usage to prevent duplicates
+const filenameCounter = new Map();
 
 function slugify(text) {
   return text
@@ -50,9 +52,8 @@ async function fetchImageBlockMetadata(blockId) {
             : block.image.external?.url;
           
           if (imageUrl) {
-            // Extract the base URL without query parameters for matching
-            const baseUrl = imageUrl.split('?')[0];
-            imageBlockMetadata.set(baseUrl, {
+            // Store with full URL as key for exact matching
+            imageBlockMetadata.set(imageUrl, {
               lastEditedTime: block.last_edited_time,
               blockId: block.id
             });
@@ -79,21 +80,23 @@ async function fetchImageBlockMetadata(blockId) {
  * @returns {string|null} - The last edited time or null if not found
  */
 function getImageLastEditedTime(imageUrl) {
-  // Try to match with or without query parameters
-  const baseUrl = imageUrl.split('?')[0];
-  
-  // First try exact match
-  if (imageBlockMetadata.has(baseUrl)) {
-    return imageBlockMetadata.get(baseUrl).lastEditedTime;
+  // First try exact match with full URL
+  if (imageBlockMetadata.has(imageUrl)) {
+    return imageBlockMetadata.get(imageUrl).lastEditedTime;
   }
   
-  // Try to find a partial match
+  // Try to match without query parameters
+  const baseUrl = imageUrl.split('?')[0];
+  
+  // Try to find by matching base URL
   for (const [storedUrl, metadata] of imageBlockMetadata.entries()) {
-    if (storedUrl.includes(baseUrl) || baseUrl.includes(storedUrl)) {
+    const storedBaseUrl = storedUrl.split('?')[0];
+    if (storedBaseUrl === baseUrl) {
       return metadata.lastEditedTime;
     }
   }
   
+  console.warn(`No metadata found for image URL: ${imageUrl.substring(0, 100)}...`);
   return null;
 }
 
@@ -101,10 +104,11 @@ function getImageLastEditedTime(imageUrl) {
  * Download an image from a URL and save it locally
  * @param {string} imageUrl - The URL of the image to download
  * @param {string} h1Slug - The slug of the heading 1 for folder organization
+ * @param {string} h2Slug - The slug of the heading 2 for folder organization
  * @returns {Promise<string>} - The local path to the saved image
  */
-async function downloadImage(imageUrl, h1Slug) {
-  const cacheKey = `${h1Slug}-${imageUrl}`;
+async function downloadImage(imageUrl, h1Slug, h2Slug) {
+  const cacheKey = `${h1Slug}-${h2Slug}-${imageUrl}`;
   // Check if we've already downloaded this image
   if (imageCache.has(cacheKey)) {
     return imageCache.get(cacheKey);
@@ -145,9 +149,24 @@ async function downloadImage(imageUrl, h1Slug) {
     let filename;
     
     if (lastEditedTime) {
-      // Use the last_edited_time as filename
-      filename = `${lastEditedTime}.${extension}`;
-      console.log(`Using timestamp filename: ${filename}`);
+      // Create a unique filename key for this folder
+      const folderKey = `${h1Slug}/${h2Slug}`;
+      const baseFilename = `${lastEditedTime}`;
+      const filenameKey = `${folderKey}/${baseFilename}.${extension}`;
+      
+      // Check if this filename already exists in this folder
+      if (filenameCounter.has(filenameKey)) {
+        // Increment counter for duplicate timestamps
+        const count = filenameCounter.get(filenameKey) + 1;
+        filenameCounter.set(filenameKey, count);
+        filename = `${baseFilename}-${count}.${extension}`;
+        console.log(`Using timestamp filename with counter: ${filename}`);
+      } else {
+        // First use of this timestamp in this folder
+        filenameCounter.set(filenameKey, 0);
+        filename = `${baseFilename}.${extension}`;
+        console.log(`Using timestamp filename: ${filename}`);
+      }
     } else {
       // Fallback to original hash-based naming if metadata not found
       const crypto = await import('crypto');
@@ -157,7 +176,7 @@ async function downloadImage(imageUrl, h1Slug) {
     }
     
     // Create the images directory if it doesn't exist
-    const imagesDir = path.join(process.cwd(), 'public/images/docs', h1Slug);
+    const imagesDir = path.join(process.cwd(), 'public/images/docs', h1Slug, h2Slug);
     await fs.mkdir(imagesDir, { recursive: true });
 
     // Save the image
@@ -167,7 +186,7 @@ async function downloadImage(imageUrl, h1Slug) {
     try {
       await fs.access(localPath);
       console.log(`Image already up to date: ${filename}`);
-      const publicPath = `/images/docs/${h1Slug}/${filename}`;
+      const publicPath = `/images/docs/${h1Slug}/${h2Slug}/${filename}`;
       imageCache.set(cacheKey, publicPath);
       return publicPath;
     } catch (error) {
@@ -177,7 +196,7 @@ async function downloadImage(imageUrl, h1Slug) {
     await fs.writeFile(localPath, buffer);
 
     // Store the local URL path (for use in markdown)
-    const publicPath = `/images/docs/${h1Slug}/${filename}`;
+    const publicPath = `/images/docs/${h1Slug}/${h2Slug}/${filename}`;
     imageCache.set(cacheKey, publicPath);
 
     console.log(`Downloaded image: ${filename}`);
@@ -191,9 +210,11 @@ async function downloadImage(imageUrl, h1Slug) {
 /**
  * Process markdown content and download all images
  * @param {string} content - The markdown content
+ * @param {string} h1Slug - The slug of the heading 1 for folder organization
+ * @param {string} h2Slug - The slug of the heading 2 for folder organization
  * @returns {Promise<string>} - The processed markdown with local image paths
  */
-async function processImagesInMarkdown(content, h1Slug) {
+async function processImagesInMarkdown(content, h1Slug, h2Slug) {
   // Match markdown image syntax: ![alt](url)
   const imageRegex = /!\[(.*?)\]\((https?:\/\/[^\)]+)\)/g;
   const images = [];
@@ -210,7 +231,7 @@ async function processImagesInMarkdown(content, h1Slug) {
 
   // Download all images and replace URLs
   for (const image of images) {
-    const localPath = await downloadImage(image.url, h1Slug);
+    const localPath = await downloadImage(image.url, h1Slug, h2Slug);
     content = content.replace(image.url, localPath);
   }
 
@@ -311,7 +332,8 @@ async function saveContent(title, content, h1Slug) {
   if (!title || !content) return;
   
   // Process images in the content before saving
-  content = await processImagesInMarkdown(content, h1Slug);
+  const h2Slug = slugify(title);
+  content = await processImagesInMarkdown(content, h1Slug, h2Slug);
   
   const slug = slugify(title);
   const filePath = path.join(process.cwd(), 'src/app/docs', slug, 'page.md');
@@ -339,13 +361,14 @@ async function main() {
     // Cleanup old images
     const imagesDirs = new Map();
     for (const [cacheKey, publicPath] of imageCache.entries()) {
-      const h1Slug = cacheKey.split('-')[0];
-      if (!imagesDirs.has(h1Slug)) imagesDirs.set(h1Slug, new Set());
+      const [h1Slug, h2Slug] = cacheKey.split('-');
+      const dirKey = `${h1Slug}/${h2Slug}`;
+      if (!imagesDirs.has(dirKey)) imagesDirs.set(dirKey, new Set());
       const filename = path.basename(publicPath);
-      imagesDirs.get(h1Slug).add(filename);
+      imagesDirs.get(dirKey).add(filename);
     }
-    for (const [h1Slug, currentFilenames] of imagesDirs.entries()) {
-      const imagesDir = path.join(process.cwd(), 'public/images/docs', h1Slug);
+    for (const [dirKey, currentFilenames] of imagesDirs.entries()) {
+      const imagesDir = path.join(process.cwd(), 'public/images/docs', dirKey);
       try {
         const files = await fs.readdir(imagesDir);
         for (const file of files) {
