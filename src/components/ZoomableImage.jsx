@@ -13,7 +13,6 @@ export function ZoomableImage({ src, alt, caption, className = '' }) {
           src={src}
           alt={alt || ''}
           className="w-full rounded-lg"
-          loading="lazy"
           width={800}
           height={600}
           unoptimized
