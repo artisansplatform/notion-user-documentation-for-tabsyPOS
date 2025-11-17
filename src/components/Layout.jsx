@@ -85,7 +85,7 @@ export function Layout({ children }) {
         <div className="flex items-center justify-center gap-2 text-center text-gray-600 text-lg">
           A free AI-powered POS from{' '}
           <span className="font-semibold">
-            <a href="https://artisanscloud.com/" target="_blank">
+            <a href="https://artisanscloud.com/" target="_blank" rel="noopener noreferrer">
               Artisans.
             </a>
           </span>
