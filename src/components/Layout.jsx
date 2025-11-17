@@ -47,7 +47,7 @@ function Header() {
         <MobileNavigation />
       </div>
       <div className="relative flex grow basis-0 items-center">
-        <Link href="/" aria-label="Home page" className='flex gap-3'>
+        <Link href="/" aria-label="Home page" className="flex gap-3">
           <Logomark className="h-9 w-9 lg:hidden" />
           <Logo className="hidden h-9 w-auto fill-slate-700 lg:block dark:fill-sky-100" />
         </Link>
