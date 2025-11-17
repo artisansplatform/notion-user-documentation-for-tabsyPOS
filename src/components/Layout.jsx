@@ -47,7 +47,7 @@ function Header() {
         <MobileNavigation />
       </div>
       <div className="relative flex grow basis-0 items-center">
-        <Link href="/" aria-label="Home page">
+        <Link href="/" aria-label="Home page" className='flex gap-3'>
           <Logomark className="h-9 w-9 lg:hidden" />
           <Logo className="hidden h-9 w-auto fill-slate-700 lg:block dark:fill-sky-100" />
         </Link>
@@ -64,7 +64,6 @@ function Header() {
 
 export function Layout({ children }) {
   let pathname = usePathname()
-  let isHomePage = pathname === '/'
 
   return (
     <div className="flex w-full flex-col">
@@ -82,6 +81,16 @@ export function Layout({ children }) {
           {children}
         </div>
       </div>
+      <footer className="p-3 md:p-6 mx-auto w-full rounded-md bg-card">
+        <div className="flex items-center justify-center gap-2 text-center text-gray-600 text-lg">
+          A free AI-powered POS from{' '}
+          <span className="font-semibold">
+            <a href="https://artisanscloud.com/" target="_blank">
+              Artisans.
+            </a>
+          </span>
+        </div>
+      </footer>
     </div>
   )
 }
