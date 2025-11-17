@@ -27,6 +27,11 @@ export const metadata = {
   },
   description:
     'Comprehensive documentation for your Point of Sale system. Learn about cart management, payment processing, customer management, inventory control, and more.',
+  icons: {
+    icon: '/images/favicon.png',
+    shortcut: '/images/favicon.png',
+    apple: '/images/favicon.png',
+  },
 }
 
 export default function RootLayout({ children }) {

@@ -1,5 +1,6 @@
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
+import Image from 'next/image'
 
 export function ZoomableImage({ src, alt, caption, className = '' }) {
   return (
@@ -8,11 +9,13 @@ export function ZoomableImage({ src, alt, caption, className = '' }) {
         overlayBgColorEnd="rgba(0, 0, 0, 0.95)"
         zoomMargin={40}
       >
-        <img
+        <Image
           src={src}
           alt={alt || ''}
           className="w-full rounded-lg"
-          loading="lazy"
+          width={800}
+          height={600}
+          unoptimized
         />
       </Zoom>
       {caption && (
