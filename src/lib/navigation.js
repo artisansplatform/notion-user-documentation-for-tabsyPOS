@@ -3,6 +3,10 @@ export const navigation = [
     "title": "Introduction",
     "links": [
       {
+        "title": "Introduction",
+        "href": "/docs/introduction"
+      },
+      {
         "title": "Overview",
         "href": "/docs/overview"
       },
@@ -33,46 +37,21 @@ export const navigation = [
     "title": "AI-Powered Cart Creation",
     "links": [
       {
-        "title": "Cart Creation",
-        "href": "/docs/cart-creation"
+        "title": "AI-Powered Cart Creation",
+        "href": "/docs/ai-powered-cart-creation"
+      },
+      {
+        "title": "AI Model Capabilities and Usage",
+        "href": "/docs/ai-model-capabilities-and-usage"
       }
     ]
   },
   {
-    "title": "AI Model Capabilities and Usage",
+    "title": "Cart",
     "links": [
       {
-        "title": "How to Use AI Commands",
-        "href": "/docs/how-to-use-ai-commands"
-      },
-      {
-        "title": "",
-        "href": "/docs/"
-      }
-    ]
-  },
-  {
-    "title": "Cart Management",
-    "links": [
-      {
-        "title": "Update Item Price & Quantity",
-        "href": "/docs/update-item-price-quantity"
-      },
-      {
-        "title": "Delete Item from Cart",
-        "href": "/docs/delete-item-from-cart"
-      },
-      {
-        "title": "Reset Price to Original",
-        "href": "/docs/reset-price-to-original"
-      },
-      {
-        "title": "Assign Customer to Cart or Add a New One",
-        "href": "/docs/assign-customer-to-cart-or-add-a-new-one"
-      },
-      {
-        "title": "Change Customer on the Same Cart",
-        "href": "/docs/change-customer-on-the-same-cart"
+        "title": "Cart Management",
+        "href": "/docs/cart-management"
       }
     ]
   },
@@ -80,18 +59,9 @@ export const navigation = [
     "title": "Payments",
     "links": [
       {
-        "title": "Choose Payment Method",
-        "href": "/docs/choose-payment-method"
+        "title": "Payments",
+        "href": "/docs/payments"
       },
-      {
-        "title": "Partial Payments",
-        "href": "/docs/partial-payments"
-      }
-    ]
-  },
-  {
-    "title": "Receipt",
-    "links": [
       {
         "title": "Print Receipt",
         "href": "/docs/print-receipt"
@@ -101,6 +71,10 @@ export const navigation = [
   {
     "title": "Products",
     "links": [
+      {
+        "title": "Products",
+        "href": "/docs/products"
+      },
       {
         "title": "Add New Product",
         "href": "/docs/add-new-product"
@@ -127,6 +101,10 @@ export const navigation = [
     "title": "Customers",
     "links": [
       {
+        "title": "Customer",
+        "href": "/docs/customer"
+      },
+      {
         "title": "Add New Customer",
         "href": "/docs/add-new-customer"
       },
@@ -149,7 +127,7 @@ export const navigation = [
     ]
   },
   {
-    "title": "History",
+    "title": "Sales History",
     "links": [
       {
         "title": "Sales History",
@@ -161,8 +139,12 @@ export const navigation = [
     "title": "Data",
     "links": [
       {
-        "title": "Import & Export",
-        "href": "/docs/import-export"
+        "title": "Data Export",
+        "href": "/docs/data-export"
+      },
+      {
+        "title": "Data Import",
+        "href": "/docs/data-import"
       }
     ]
   },
@@ -170,37 +152,21 @@ export const navigation = [
     "title": "Settings",
     "links": [
       {
-        "title": "Language",
-        "href": "/docs/language"
-      },
-      {
-        "title": "AI Models",
-        "href": "/docs/ai-models"
-      },
-      {
-        "title": "Receipt Customisation",
-        "href": "/docs/receipt-customisation"
-      },
-      {
-        "title": "Currency",
-        "href": "/docs/currency"
-      },
-      {
-        "title": "Keyboard Shortcuts",
-        "href": "/docs/keyboard-shortcuts"
-      },
-      {
-        "title": "Clear Data",
-        "href": "/docs/clear-data"
+        "title": "Settings",
+        "href": "/docs/settings"
       }
     ]
   },
   {
-    "title": "Welcome",
+    "title": "Integrations",
     "links": [
       {
-        "title": "Welcome Note",
-        "href": "/docs/welcome-note"
+        "title": "Google API",
+        "href": "/docs/google-api"
+      },
+      {
+        "title": "Firebase Setup (For Data Syncing)",
+        "href": "/docs/firebase-setup-for-data-syncing"
       }
     ]
   }
