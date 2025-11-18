@@ -1,4 +1,4 @@
-# **Payments**
+# Payments
 
 ## Payment Methods
 
