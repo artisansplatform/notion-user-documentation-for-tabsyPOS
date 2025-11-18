@@ -1,6 +1,6 @@
 # **Cart** 
 
-## **Cart Management**
+## Cart Management
 
 
 - **Update Item Price & Quantity**

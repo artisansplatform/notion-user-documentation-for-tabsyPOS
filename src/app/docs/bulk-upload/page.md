@@ -1,6 +1,6 @@
 # Customers
 
-## **Bulk Upload**
+## Bulk Upload
 
 
 

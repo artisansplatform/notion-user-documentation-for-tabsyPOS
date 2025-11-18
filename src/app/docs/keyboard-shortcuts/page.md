@@ -1,6 +1,6 @@
 # Settings
 
-## **Keyboard Shortcuts**
+## Keyboard Shortcuts
 
 
 

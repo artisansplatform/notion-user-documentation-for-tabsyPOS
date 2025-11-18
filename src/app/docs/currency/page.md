@@ -1,6 +1,6 @@
 # Settings
 
-## **Currency**
+## Currency
 
 
 

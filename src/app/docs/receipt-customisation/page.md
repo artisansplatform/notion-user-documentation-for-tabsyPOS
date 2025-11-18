@@ -1,6 +1,6 @@
 # Settings
 
-## **Receipt Customisation**
+## Receipt Customisation
 
 
 

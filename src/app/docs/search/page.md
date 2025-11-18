@@ -1,6 +1,6 @@
 # Customers
 
-## **Search**
+## Search
 
 
 

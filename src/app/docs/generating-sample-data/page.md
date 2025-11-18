@@ -1,6 +1,6 @@
 # Getting Started
 
-## **Generating Sample Data**
+## Generating Sample Data
 
 
 
