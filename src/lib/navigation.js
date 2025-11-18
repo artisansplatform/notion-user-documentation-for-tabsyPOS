@@ -1,6 +1,6 @@
 export const navigation = [
   {
-    "title": "Introduction",
+    "title": "Getting Started",
     "links": [
       {
         "title": "Introduction",
@@ -30,12 +30,7 @@ export const navigation = [
       {
         "title": "Instant Product Creation",
         "href": "/docs/instant-product-creation"
-      }
-    ]
-  },
-  {
-    "title": "AI-Powered Cart Creation",
-    "links": [
+      },
       {
         "title": "AI-Powered Cart Creation",
         "href": "/docs/ai-powered-cart-creation"

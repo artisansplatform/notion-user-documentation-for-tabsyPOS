@@ -1,4 +1,4 @@
-# **AI-Powered Cart Creation**
+# Sales
 
 ## **AI-Powered Cart Creation**
 
@@ -20,6 +20,6 @@ The system will automatically:
 This feature simplifies billing during busy hours and reduces manual steps, allowing you to complete transactions quickly and accurately.
 
 
-![TabsyPOS-Smart-POS-System-11-12-2025_12_00_PM.png](/images/docs/ai-powered-cart-creation/ai-powered-cart-creation/2025-11-17T07:13:00.000Z.png)
+![TabsyPOS-Smart-POS-System-11-12-2025_12_00_PM.png](/images/docs/sales/ai-powered-cart-creation/2025-11-17T07:13:00.000Z.png)
 
 

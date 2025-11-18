@@ -1,4 +1,4 @@
-# **AI-Powered Cart Creation**
+# Sales
 
 ## **AI Model Capabilities and Usage**
 
