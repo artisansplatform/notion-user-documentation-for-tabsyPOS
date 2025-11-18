@@ -1,4 +1,4 @@
-# **Cart** 
+# Cart 
 
 ## Cart Management
 
