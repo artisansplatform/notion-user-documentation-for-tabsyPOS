@@ -1,6 +1,6 @@
 # Settings
 
-## **AI Models**
+## AI Models
 
 
 

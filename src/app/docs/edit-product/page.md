@@ -1,6 +1,6 @@
 # Products
 
-## **Edit Product**
+## Edit Product
 
 
 

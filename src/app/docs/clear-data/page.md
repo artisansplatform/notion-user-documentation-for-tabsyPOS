@@ -1,6 +1,6 @@
 # Settings
 
-## **Clear Data**
+## Clear Data
 
 
 
