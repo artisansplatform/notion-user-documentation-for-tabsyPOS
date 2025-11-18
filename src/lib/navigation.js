@@ -21,23 +21,15 @@ export const navigation = [
     ]
   },
   {
-    "title": "Sales",
+    "title": "Sales Module",
     "links": [
       {
-        "title": "Product Search Options",
-        "href": "/docs/product-search-options"
+        "title": "Product Discovery & Selection",
+        "href": "/docs/product-discovery-selection"
       },
       {
-        "title": "Instant Product Creation",
-        "href": "/docs/instant-product-creation"
-      },
-      {
-        "title": "AI-Powered Cart Creation",
-        "href": "/docs/ai-powered-cart-creation"
-      },
-      {
-        "title": "AI Model Capabilities and Usage",
-        "href": "/docs/ai-model-capabilities-and-usage"
+        "title": "Smart Selling with AI",
+        "href": "/docs/smart-selling-with-ai"
       }
     ]
   },
@@ -54,12 +46,12 @@ export const navigation = [
     "title": "Payments",
     "links": [
       {
-        "title": "Payments",
-        "href": "/docs/payments"
+        "title": "Payment Methods",
+        "href": "/docs/payment-methods"
       },
       {
-        "title": "Print Receipt",
-        "href": "/docs/print-receipt"
+        "title": "Print Receipts",
+        "href": "/docs/print-receipts"
       }
     ]
   },
@@ -67,8 +59,8 @@ export const navigation = [
     "title": "Products",
     "links": [
       {
-        "title": "Products",
-        "href": "/docs/products"
+        "title": "Overview: Products Module",
+        "href": "/docs/overview-products-module"
       },
       {
         "title": "Add New Product",
@@ -96,8 +88,8 @@ export const navigation = [
     "title": "Customers",
     "links": [
       {
-        "title": "Customer",
-        "href": "/docs/customer"
+        "title": "Overview: Customer Module",
+        "href": "/docs/overview-customer-module"
       },
       {
         "title": "Add New Customer",
@@ -122,7 +114,7 @@ export const navigation = [
     ]
   },
   {
-    "title": "Sales History",
+    "title": "Sales Transactions",
     "links": [
       {
         "title": "Sales History",
@@ -147,21 +139,40 @@ export const navigation = [
     "title": "Settings",
     "links": [
       {
-        "title": "Settings",
-        "href": "/docs/settings"
-      }
-    ]
-  },
-  {
-    "title": "Integrations",
-    "links": [
-      {
-        "title": "Google API",
-        "href": "/docs/google-api"
+        "title": "Overview - Settings Module",
+        "href": "/docs/overview-settings-module"
       },
       {
-        "title": "Firebase Setup (For Data Syncing)",
-        "href": "/docs/firebase-setup-for-data-syncing"
+        "title": "Language",
+        "href": "/docs/language"
+      },
+      {
+        "title": "AI Models",
+        "href": "/docs/ai-models"
+      },
+      {
+        "title": "Receipt Customisation",
+        "href": "/docs/receipt-customisation"
+      },
+      {
+        "title": "Currency",
+        "href": "/docs/currency"
+      },
+      {
+        "title": "Keyboard Shortcuts",
+        "href": "/docs/keyboard-shortcuts"
+      },
+      {
+        "title": "Clear Data",
+        "href": "/docs/clear-data"
+      },
+      {
+        "title": "Google API Integration",
+        "href": "/docs/google-api-integration"
+      },
+      {
+        "title": "Firebase Integration (For Data Syncing)",
+        "href": "/docs/firebase-integration-for-data-syncing"
       }
     ]
   }
