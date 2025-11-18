@@ -22,6 +22,10 @@ const imageCache = new Map();
 const imageBlockMetadata = new Map();
 // Store for tracking filename usage to prevent duplicates
 const filenameCounter = new Map();
+// Store for tracking which directories have been cleaned
+const cleanedDirectories = new Set();
+// Store for tracking which images are currently in use (to keep)
+const currentRunImages = new Map(); // key: directory path, value: Set of filenames
 
 function slugify(text) {
   return text
@@ -101,6 +105,41 @@ function getImageLastEditedTime(imageUrl) {
 }
 
 /**
+ * Delete old images from a directory that are not in the current run
+ * This ensures old/outdated images are removed when content is updated
+ * @param {string} imagesDir - The directory path to clean
+ */
+async function cleanOldImagesFromDirectory(imagesDir) {
+  try {
+    // Check if directory exists
+    await fs.access(imagesDir);
+    
+    // Read all files in the directory
+    const files = await fs.readdir(imagesDir);
+    
+    // Get the set of current filenames for this directory
+    const currentFilenames = currentRunImages.get(imagesDir) || new Set();
+    
+    // Delete image files that are NOT in the current run
+    for (const file of files) {
+      // Only check image files (png, jpg, jpeg, gif, webp, etc.)
+      if (/\.(png|jpg|jpeg|gif|webp|bmp|svg)$/i.test(file)) {
+        if (!currentFilenames.has(file)) {
+          const filePath = path.join(imagesDir, file);
+          await fs.unlink(filePath);
+          console.log(`Deleted old image: ${file}`);
+        }
+      }
+    }
+  } catch (error) {
+    // Directory doesn't exist or is empty, which is fine
+    if (error.code !== 'ENOENT') {
+      console.warn(`Could not clean directory ${imagesDir}:`, error.message);
+    }
+  }
+}
+
+/**
  * Download an image from a URL and save it locally
  * @param {string} imageUrl - The URL of the image to download
  * @param {string} h1Slug - The slug of the heading 1 for folder organization
@@ -109,7 +148,7 @@ function getImageLastEditedTime(imageUrl) {
  */
 async function downloadImage(imageUrl, h1Slug, h2Slug) {
   const cacheKey = `${h1Slug}-${h2Slug}-${imageUrl}`;
-  // Check if we've already downloaded this image
+  // Check if we've already downloaded this image in this run
   if (imageCache.has(cacheKey)) {
     return imageCache.get(cacheKey);
   }
@@ -179,27 +218,34 @@ async function downloadImage(imageUrl, h1Slug, h2Slug) {
     const imagesDir = path.join(process.cwd(), 'public/images/docs', h1Slug, h2Slug);
     await fs.mkdir(imagesDir, { recursive: true });
 
-    // Save the image
+    // Track this filename as part of current run
+    if (!currentRunImages.has(imagesDir)) {
+      currentRunImages.set(imagesDir, new Set());
+    }
+    currentRunImages.get(imagesDir).add(filename);
+
+    // Check if file already exists with same name (up to date)
     const localPath = path.join(imagesDir, filename);
-    
-    // Check if the image is already up to date
     try {
       await fs.access(localPath);
-      console.log(`Image already up to date: ${filename}`);
+      console.log(`Image already exists and up to date: ${filename}`);
+      
+      // Store the local URL path (for use in markdown)
       const publicPath = `/images/docs/${h1Slug}/${h2Slug}/${filename}`;
       imageCache.set(cacheKey, publicPath);
       return publicPath;
-    } catch (error) {
-      // File does not exist, proceed to download
+    } catch {
+      // File doesn't exist, proceed to download
     }
-    
+
+    // Save the image
     await fs.writeFile(localPath, buffer);
 
     // Store the local URL path (for use in markdown)
     const publicPath = `/images/docs/${h1Slug}/${h2Slug}/${filename}`;
     imageCache.set(cacheKey, publicPath);
 
-    console.log(`Downloaded image: ${filename}`);
+    console.log(`Downloaded new image: ${filename}`);
     return publicPath;
   } catch (error) {
     console.error(`Error downloading image ${imageUrl}:`, error.message);
@@ -358,31 +404,14 @@ async function main() {
     
     await processMarkdown(mdString);
     
-    // Cleanup old images
-    const imagesDirs = new Map();
-    for (const [cacheKey, publicPath] of imageCache.entries()) {
-      const [h1Slug, h2Slug] = cacheKey.split('-');
-      const dirKey = `${h1Slug}/${h2Slug}`;
-      if (!imagesDirs.has(dirKey)) imagesDirs.set(dirKey, new Set());
-      const filename = path.basename(publicPath);
-      imagesDirs.get(dirKey).add(filename);
-    }
-    for (const [dirKey, currentFilenames] of imagesDirs.entries()) {
-      const imagesDir = path.join(process.cwd(), 'public/images/docs', dirKey);
-      try {
-        const files = await fs.readdir(imagesDir);
-        for (const file of files) {
-          if (!currentFilenames.has(file)) {
-            await fs.unlink(path.join(imagesDir, file));
-            console.log(`Deleted old image: ${file}`);
-          }
-        }
-      } catch (error) {
-        // Directory doesn't exist or error reading it
-      }
+    // After processing all images, clean up old images from each directory
+    console.log('Cleaning up old images...');
+    for (const [imagesDir, filenames] of currentRunImages.entries()) {
+      await cleanOldImagesFromDirectory(imagesDir);
     }
     
     console.log(`Done! Files have been created and ${imageCache.size} images downloaded.`);
+    console.log(`Cleaned ${currentRunImages.size} image directories.`);
   } catch (error) {
     console.error('Error:', error);
     process.exit(1);
