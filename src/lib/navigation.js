@@ -34,7 +34,7 @@ export const navigation = [
     ]
   },
   {
-    "title": "Cart",
+    "title": "Carts",
     "links": [
       {
         "title": "Cart Management",
