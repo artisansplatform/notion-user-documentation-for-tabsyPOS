@@ -1,4 +1,4 @@
-# Carts
+# Cart
 
 ## Cart Management
 
@@ -27,7 +27,7 @@ Use the **Clear Cart** option to remove all items from the current cart at once.
     If you need to switch the customer during checkout, simply click **Change Customer** and select another one from the list. The products already added to the cart remain unchanged, ensuring a smooth transition without losing any sale details.
 
 
-    ![TabsyPOS-Smart-POS-System-11-12-2025_12_01_PM.png](/images/docs/carts/cart-management/2025-11-17T07:13:00.000Z.png)
+    ![TabsyPOS-Smart-POS-System-11-12-2025_12_01_PM.png](/images/docs/cart/cart-management/2025-11-17T07:13:00.000Z.png)
 
 
 ---
