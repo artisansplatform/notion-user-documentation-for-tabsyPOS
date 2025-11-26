@@ -4,9 +4,6 @@
 
 
 
-### [**Get Started**](https://tabsy.artisanscloud.com.my/)
-
-
 Get up and running in minutes!
 
 1. **Add Products** – Enter product name and price, or upload them in bulk.
@@ -14,6 +11,9 @@ Get up and running in minutes!
 3. **Assign a Customer** – Link an existing customer or add a new one.
 4. **Accept Payment** – Choose payment method (Cash, Card, or Online).
 5. **Print Receipt** – Instantly print or reprint receipts — even offline!
+
+### [**Get Started**](https://tabsy.artisanscloud.com.my/)
+
 
 ---
 
