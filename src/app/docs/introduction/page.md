@@ -15,8 +15,7 @@ Whether you’re online or offline, TabsyPOS keeps your business running smoothl
 This guide will help you explore all the features that make TabsyPOS intelligent, intuitive, and efficient for your daily store operations.
 
 
-
-                                                                                  [**Get Started**](https://tabsy.artisanscloud.com.my/)
+    ###                                                         [**Get Started**](https://tabsy.artisanscloud.com.my/)
 
 
 ---
