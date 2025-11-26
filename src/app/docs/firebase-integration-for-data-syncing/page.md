@@ -66,10 +66,6 @@ Follow the steps below to set up Firebase for your store:
 
     ![74f63fff-3701-48f1-8968-d4675bed3c2b.png](/images/docs/settings/firebase-integration-for-data-syncing/2025-11-17T07:14:00.000Z-8.png)
 
-    > **Note:** If you encounter this warning, as highlighted in red colour in the screenshot below, it means your database is publicly accessible and not secure. This means anyone can view, modify, or delete the data in your database. For production or shared environments, it’s strongly recommended to apply secure rules. 
-
-    ![d1d11364-3259-41ac-abf5-2ea2c1e16a7a.png](/images/docs/settings/firebase-integration-for-data-syncing/2025-11-26T10:23:00.000Z.png)
-
 
 ---
 
