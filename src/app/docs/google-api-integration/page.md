@@ -96,7 +96,7 @@ To enable this integration, you need to create a **Google Client ID** from the *
 
 - Enter Name: e.g. Tabsy Web
 - In the **Authorised JavaScript origins** section, add the app’s URL.
-    - Example: [https://tabsy.artisanscloud.com.my/](https://tabsy.artisanscloud.com.my/)
+    - U: [https://tabsy.artisanscloud.com.my/](https://tabsy.artisanscloud.com.my/)
 - In the **Authorised redirect URIs** section, add the app’s URL.
     - Example: [https://tabsy.artisanscloud.com.my/](https://tabsy.artisanscloud.com.my/)
 - Click on **Create**.
