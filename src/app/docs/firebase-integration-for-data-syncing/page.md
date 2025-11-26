@@ -25,11 +25,11 @@ Follow the steps below to set up Firebase for your store:
 
 ![Create-project--Firebase-console-11-10-2025_10_33_AM.png](/images/docs/settings/firebase-integration-for-data-syncing/2025-11-17T07:14:00.000Z-1.png)
 
-- **Disable Gemini in Firebase** and click **Continue**
+- **Disable Gemini** in Firebase, as it is not needed for this setup and click **Continue**
 
 ![Create-project--Firebase-console-11-10-2025_10_36_AM.png](/images/docs/settings/firebase-integration-for-data-syncing/2025-11-17T07:14:00.000Z-2.png)
 
-- **Disable Google Analytics** and click **Create Project**
+- **Disable Google Analytics** in Firebase, as it is not needed for this setup and click **Create Project**
 
     ![Create-project--Firebase-console-11-10-2025_10_37_AM.png](/images/docs/settings/firebase-integration-for-data-syncing/2025-11-17T07:14:00.000Z-3.png)
 
@@ -66,8 +66,10 @@ Follow the steps below to set up Firebase for your store:
 
     ![74f63fff-3701-48f1-8968-d4675bed3c2b.png](/images/docs/settings/firebase-integration-for-data-syncing/2025-11-17T07:14:00.000Z-8.png)
 
-    > Note: This configuration is for testing or single-user environments. For production or shared systems, it’s strongly recommended to configure more secure rules.  
-    > 
+    > **Note:** If you encounter this warning, as highlighted in red colour in the screenshot below, it means your database is publicly accessible and not secure. This means anyone can view, modify, or delete the data in your database. For production or shared environments, it’s strongly recommended to apply secure rules. 
+
+    ![d1d11364-3259-41ac-abf5-2ea2c1e16a7a.png](/images/docs/settings/firebase-integration-for-data-syncing/2025-11-26T10:23:00.000Z.png)
+
 
 ---
 
@@ -94,7 +96,6 @@ Follow the steps below to set up Firebase for your store:
     ![TabsyPOS--Project-settings--General--Firebase-console-11-12-2025_10_20_AM.png](/images/docs/settings/firebase-integration-for-data-syncing/2025-11-17T07:14:00.000Z-12.png)
 
 - To view the API keys again, go to **Project Settings → Scroll Down**, and you will find them listed under **Your Apps**.
-- Paste all these keys into the **Firebase Configuration** section in **TabsyPOS**.
 
 ---
 
