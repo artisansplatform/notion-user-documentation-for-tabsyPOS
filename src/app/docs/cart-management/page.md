@@ -14,6 +14,11 @@ To remove a product, click the **delete icon** next to the item in the cart. The
 
 - **Add Items to Cart by Scanning Barcode**
 You can use **Scan Mode** to add items to the cart by scanning product barcodes. Click on the **camera icon**, show the barcode in front of the camera, and the system will automatically detect and add the item to the cart.
+
+**Scan Mode** also supports **continuous scanning**, allowing you to scan multiple products one after another without manually tapping anything — making the billing process faster and more efficient.
+    >   
+    > **Note:** Scan Mode currently supports **Code-128 barcode format only**.  
+    > 
 - **Reset Price to Original**
 If a product’s price has been manually changed in the cart, you can quickly revert it to its original listed price. Click the **Reset to Original** button on the edit cart popup, and the system will automatically restore the original product price as defined in the product list.
 - **Clear Cart**
@@ -22,12 +27,15 @@ Use the **Clear Cart** option to remove all items from the current cart at once.
 
     You can assign a customer to the current cart by selecting an existing customer from the list or **creating a new one**. Once assigned, the customer’s information is linked to the cart, making it easier to track transactions and maintain accurate records.
 
+
+    ![TabsyPOS-Smart-POS-System-11-28-2025_11_57_AM.png](/images/docs/cart/cart-management/2025-11-28T06:27:00.000Z.png)
+
 - **Change Customer on the Same Cart**
 
     If you need to switch the customer during checkout, simply click **Change Customer** and select another one from the list. The products already added to the cart remain unchanged, ensuring a smooth transition without losing any sale details.
 
 
-    ![TabsyPOS-Smart-POS-System-11-12-2025_12_01_PM.png](/images/docs/cart/cart-management/2025-11-17T07:13:00.000Z.png)
+    ![TabsyPOS-Smart-POS-System-11-28-2025_11_55_AM.png](/images/docs/cart/cart-management/2025-11-28T06:25:00.000Z.png)
 
 
 ---

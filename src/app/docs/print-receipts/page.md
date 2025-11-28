@@ -10,7 +10,7 @@ After completing the payment, simply click **Print Receipt** to get a detailed i
 Even if you are offline, TabsyPOS securely stores receipts locally on your device, allowing you to print them anytime without needing an internet connection.
 
 
-![Print_Receipt.png](/images/docs/payments/print-receipts/2025-11-17T07:13:00.000Z.png)
+![TabsyPOS-Smart-POS-System-11-28-2025_11_59_AM.png](/images/docs/payments/print-receipts/2025-11-28T06:30:00.000Z.png)
 
 
 ---

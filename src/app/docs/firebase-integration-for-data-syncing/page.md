@@ -16,7 +16,7 @@ Follow the steps below to set up Firebase for your store:
 
 **Step 1: Create a Firebase Project**
 
-- Visit [https://console.firebase.google.com/](https://console.firebase.google.com/)
+- Visit <a href="https://console.firebase.google.com/" target="_blank" rel="noopener noreferrer">https://console.firebase.google.com/</a>
 - Click on **Get Started**
 
 ![d3420c87-8e2c-4995-b6e5-d1b9f23acbaa.png](/images/docs/settings/firebase-integration-for-data-syncing/2025-11-17T07:14:00.000Z.png)
@@ -87,27 +87,26 @@ Follow the steps below to set up Firebase for your store:
 
 - Under ‘Add Firebase SDK’, ensure ‘Use npm’ is selected (default).
 - Copy all the provided **Firebase Configuration Keys**.
+
+    ![TabsyPOS--Project-settings--General--Firebase-console-11-28-2025_09_10_AM.png](/images/docs/settings/firebase-integration-for-data-syncing/2025-11-28T03:55:00.000Z.png)
+
 - Click **Continue to Console** when done.
-
-    ![TabsyPOS--Project-settings--General--Firebase-console-11-12-2025_10_20_AM.png](/images/docs/settings/firebase-integration-for-data-syncing/2025-11-17T07:14:00.000Z-12.png)
-
 - To view the API keys again, go to **Project Settings → Scroll Down**, and you will find them listed under **Your Apps**.
+
+    ![TabsyPOS--Project-settings--General--Firebase-console-11-28-2025_09_00_AM.png](/images/docs/settings/firebase-integration-for-data-syncing/2025-11-28T03:35:00.000Z.png)
+
 
 ---
 
 
 **Step 5: Connect Firebase to TabsyPOS**
 
-
-
-    ![TabsyPOS-Smart-POS-System-11-10-2025_04_08_PM.png](/images/docs/settings/firebase-integration-for-data-syncing/2025-11-17T07:14:00.000Z-13.png)
-
-
----
-
 - Open **TabsyPOS → Settings → Firebase Configuration**.
 - Paste all copied keys into their respective fields.
 - Save the configuration to complete the setup.
+
+    ![TabsyPOS-Smart-POS-System-11-28-2025_09_12_AM.png](/images/docs/settings/firebase-integration-for-data-syncing/2025-11-28T03:43:00.000Z.png)
+
 
 ---
 
@@ -122,7 +121,7 @@ To verify that your data is syncing correctly:
 - Expand the nodes under your project — you should see structured data such as product lists, transactions, or user data as synced from TabsyPOS.
 - Any new data or updates in TabsyPOS will reflect here automatically after syncing.
 
-    ![TabsyPOS--Realtime-Database--Data--Firebase-console-11-11-2025_10_17_AM.png](/images/docs/settings/firebase-integration-for-data-syncing/2025-11-17T07:14:00.000Z-14.png)
+    ![TabsyPOS--Realtime-Database--Data--Firebase-console-11-11-2025_10_17_AM.png](/images/docs/settings/firebase-integration-for-data-syncing/2025-11-17T07:14:00.000Z-12.png)
 
 
 ---

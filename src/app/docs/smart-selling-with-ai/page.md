@@ -23,7 +23,7 @@ The system will automatically:
 This feature simplifies billing during busy hours and reduces manual steps, allowing you to complete transactions quickly and accurately.
 
 
-![TabsyPOS-Smart-POS-System-11-12-2025_12_00_PM.png](/images/docs/sales-module/smart-selling-with-ai/2025-11-17T07:13:00.000Z.png)
+![TabsyPOS-Smart-POS-System-11-28-2025_11_52_AM.png](/images/docs/sales-module/smart-selling-with-ai/2025-11-28T06:23:00.000Z.png)
 
 
 **AI Model Capabilities and Usage**
@@ -51,7 +51,7 @@ You can type commands in a natural, conversational way, for example:
 - The system may **not understand complex or ambiguous instructions** outside the provided examples.
 - Voice recognition for AI commands is **browser-based** and does not require any AI model.
 - Always **verify the cart contents** after using AI commands to ensure accuracy.
-- AI capabilities in TabsyPOS depend on the selected model. If you use the **Local Model**, all AI functions will continue to work even when your device is offline. However, if you choose the **OpenRouter Model**, an active internet connection is required since it relies on third-party online services.
+- TabsyPOS currently supports AI features through the **OpenRouter Model**. Since this model relies on online services, an active internet connection is required for AI features to work.
 
 ---
 

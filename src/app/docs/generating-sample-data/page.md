@@ -19,7 +19,7 @@ This demo data is temporary and can be cleared anytime using the **Clear Data** 
 
 
 
-![Sales_Demo_Data.png](/images/docs/getting-started/generating-sample-data/2025-11-17T12:06:00.000Z.png)
+![TabsyPOS-Smart-POS-System-11-28-2025_10_31_AM.png](/images/docs/getting-started/generating-sample-data/2025-11-28T05:01:00.000Z.png)
 
 
 ---
