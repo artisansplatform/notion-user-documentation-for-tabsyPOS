@@ -5,6 +5,7 @@ import yaml from 'js-yaml'
 import { DocsLayout } from '@/components/DocsLayout'
 import { Fence } from '@/components/Fence'
 import { ZoomableImage } from '@/components/ZoomableImage'
+import { CustomLink } from '@/components/Link'
 
 let documentSlugifyMap = new Map()
 
@@ -70,6 +71,10 @@ const nodes = {
         caption: attributes.title
       })
     }
+  },
+  link: {
+    ...defaultNodes.link,
+    render: CustomLink,
   },
 }
 
