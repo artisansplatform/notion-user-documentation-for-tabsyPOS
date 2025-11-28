@@ -24,7 +24,7 @@ TabsyPOS uses **free OpenRouter models**, meaning you do **not need to pay anyth
 
 Follow the steps below to set up the OpenRouter API Key:
 
-1. Go to <a href="https://openrouter.ai/" target="_blank" rel="noopener noreferrer">https://openrouter.ai/</a>
+1. Go to [https://openrouter.ai/](https://openrouter.ai/)
 2. Log in to your account.
 3. Open your **Profile**.
 4. Navigate to the **Keys** section.

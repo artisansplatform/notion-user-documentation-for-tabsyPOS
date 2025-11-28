@@ -12,7 +12,7 @@ Get up and running in minutes!
 4. **Accept Payment** – Choose payment method (Cash, Card, or Online).
 5. **Print Receipt** – Instantly print or reprint receipts — even offline!
 
-### <a href="https://tabsy.artisanscloud.com.my/" target="_blank" rel="noopener noreferrer">**Get Started**</a>
+### [**Get Started**](https://tabsy.artisanscloud.com.my/)
 
 
 ---
