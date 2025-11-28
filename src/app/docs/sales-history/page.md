@@ -15,6 +15,6 @@ At the top of the page, you’ll see three summary tabs — **Today’s Sales**,
 You can open any transaction to **review individual cart items** or **reprint receipts** whenever required. Even without an internet connection, all sales data remains safely stored on your device, ensuring uninterrupted access and reliability.
 
 
-![TabsyPOS-Smart-POS-System-11-12-2025_02_38_PM.png](/images/docs/sales-transactions/sales-history/2025-11-17T07:14:00.000Z.png)
+![TabsyPOS-Smart-POS-System-11-28-2025_12_08_PM.png](/images/docs/sales-transactions/sales-history/2025-11-28T06:38:00.000Z.png)
 
 

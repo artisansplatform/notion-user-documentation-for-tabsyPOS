@@ -20,7 +20,7 @@ To enable this integration, you need to create a **Google Client ID** from the *
 
 **Step 1: Create or Select a Project**
 
-- Go to the [**Google Cloud Console**](https://console.cloud.google.com/).
+- Go to the <a href="https://console.cloud.google.com/" target="_blank" rel="noopener noreferrer">**Google Cloud Console**</a>.
 - If you don’t have a project, click **“Create Project.”**
 - Enter a project name — for example: **TabsyPOS** — and click **Create**.
 - Location (Organisation), You can leave this as the default.
@@ -88,26 +88,26 @@ To enable this integration, you need to create a **Google Client ID** from the *
 
         ![304af4b3-2df5-4feb-9795-be5273117a35.png](/images/docs/settings/google-api-integration/2025-11-17T07:14:00.000Z-11.png)
 
-- Once this is created, go to Audience and set your “Test Users” by entering your Gmail ID.
+- Once this is created, go to Audience and click on **Publish App**.
 
-    ![Audience--Google-Auth-Platform--My-Project-86091--Google-Cloud-console-11-10-2025_02_54_PM.png](/images/docs/settings/google-api-integration/2025-11-17T07:14:00.000Z-12.png)
+    ![da2d4e8c-07df-45d6-88c4-b86a4423e708.png](/images/docs/settings/google-api-integration/2025-11-28T08:21:00.000Z.png)
 
 - Next is Create OAuth Client. To create Auth Client, go to Clients and click on “Create Client”
 
-    ![3593fbac-5ad6-4afb-9a3e-978bbb4c6ac9.png](/images/docs/settings/google-api-integration/2025-11-17T07:14:00.000Z-13.png)
+    ![3593fbac-5ad6-4afb-9a3e-978bbb4c6ac9.png](/images/docs/settings/google-api-integration/2025-11-17T07:14:00.000Z-12.png)
 
 - Under **Application type**, select **Web application**.
 
-    ![460e2c60-c48d-49ff-9b32-2e24beeadd3a.png](/images/docs/settings/google-api-integration/2025-11-17T07:14:00.000Z-14.png)
+    ![460e2c60-c48d-49ff-9b32-2e24beeadd3a.png](/images/docs/settings/google-api-integration/2025-11-17T07:14:00.000Z-13.png)
 
 - Enter Name: e.g. Tabsy Web
 - In the **Authorised JavaScript origins** section, add the app’s URL.
-    - URL: [https://tabsy.artisanscloud.com.my](https://tabsy.artisanscloud.com.my/)
+    - URL: <a href="https://tabsy.artisanscloud.com.my/" target="_blank" rel="noopener noreferrer">https://tabsy.artisanscloud.com.my</a>
 - In the **Authorised redirect URIs** section, add the app’s URL.
-    - URL: [https://tabsy.artisanscloud.com.my](https://tabsy.artisanscloud.com.my/)
+    - URL: <a href="https://tabsy.artisanscloud.com.my/" target="_blank" rel="noopener noreferrer">https://tabsy.artisanscloud.com.my</a>
 - Click on **Create**.
 
-    ![Create-OAuth-client-ID--Google-Auth-Platform--Test-Project--Google-Cloud-console-11-10-2025_04_05_PM.png](/images/docs/settings/google-api-integration/2025-11-17T07:14:00.000Z-15.png)
+    ![Create-OAuth-client-ID--Google-Auth-Platform--Test-Project--Google-Cloud-console-11-10-2025_04_05_PM.png](/images/docs/settings/google-api-integration/2025-11-17T07:14:00.000Z-14.png)
 
 
 ---
@@ -117,7 +117,7 @@ To enable this integration, you need to create a **Google Client ID** from the *
 
 1. After creation, your new **OAuth Client ID** will be displayed.
 
-    ![611a45d4-83d7-473d-bc78-7a8c9765ea79.png](/images/docs/settings/google-api-integration/2025-11-17T07:14:00.000Z-16.png)
+    ![611a45d4-83d7-473d-bc78-7a8c9765ea79.png](/images/docs/settings/google-api-integration/2025-11-17T07:14:00.000Z-15.png)
 
 2. Copy this **Client ID**.
 3. Go to **TabsyPOS → Settings → Google API Tab**

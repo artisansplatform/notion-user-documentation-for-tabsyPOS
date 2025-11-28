@@ -17,7 +17,7 @@ You can import the following types of data:
     > Note: During import, existing records in the selected tables are automatically replaced with the imported data.
 - **Receipt Settings and Other Settings:** Restores customised templates and store preferences such as **language**, **currency**, and **AI model configuration**.
 
-![TabsyPOS-Smart-POS-System-11-12-2025_02_39_PM.png](/images/docs/data/data-import/2025-11-17T07:14:00.000Z.png)
+![TabsyPOS-Smart-POS-System-11-28-2025_12_16_PM.png](/images/docs/data/data-import/2025-11-28T06:47:00.000Z.png)
 
 
 ---
