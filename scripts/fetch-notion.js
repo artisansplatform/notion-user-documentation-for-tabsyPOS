@@ -374,12 +374,32 @@ async function processMarkdown(mdString) {
   );
 }
 
+/**
+ * Process markdown content to make links open in new tab
+ * @param {string} content - The markdown content
+ * @returns {string} - The processed markdown with HTML links
+ */
+function processLinksInMarkdown(content) {
+  // Match markdown link syntax: [text](url) but NOT images ![alt](url)
+  // Only matches http/https URLs
+  const linkRegex = /(!?)\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g;
+  
+  return content.replace(linkRegex, (match, isImage, text, url) => {
+    if (isImage === '!') {
+      return match; // It's an image, return as is
+    }
+    // It's a link, convert to HTML with target="_blank"
+    return `<a href="${url}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+  });
+}
+
 async function saveContent(title, content, h1Slug) {
   if (!title || !content) return;
   
   // Process images in the content before saving
   const h2Slug = slugify(title);
   content = await processImagesInMarkdown(content, h1Slug, h2Slug);
+  content = processLinksInMarkdown(content);
   
   const slug = slugify(title);
   const filePath = path.join(process.cwd(), 'src/app/docs', slug, 'page.md');
