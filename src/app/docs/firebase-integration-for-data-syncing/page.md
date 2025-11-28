@@ -16,7 +16,7 @@ Follow the steps below to set up Firebase for your store:
 
 **Step 1: Create a Firebase Project**
 
-- Visit <a href="https://console.firebase.google.com/" target="_blank" rel="noopener noreferrer">https://console.firebase.google.com/</a>
+- Visit [https://console.firebase.google.com/](https://console.firebase.google.com/)
 - Click on **Get Started**
 
 ![d3420c87-8e2c-4995-b6e5-d1b9f23acbaa.png](/images/docs/settings/firebase-integration-for-data-syncing/2025-11-17T07:14:00.000Z.png)

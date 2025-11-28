@@ -20,7 +20,7 @@ To enable this integration, you need to create a **Google Client ID** from the *
 
 **Step 1: Create or Select a Project**
 
-- Go to the <a href="https://console.cloud.google.com/" target="_blank" rel="noopener noreferrer">**Google Cloud Console**</a>.
+- Go to the [**Google Cloud Console**](https://console.cloud.google.com/).
 - If you don’t have a project, click **“Create Project.”**
 - Enter a project name — for example: **TabsyPOS** — and click **Create**.
 - Location (Organisation), You can leave this as the default.
@@ -102,9 +102,9 @@ To enable this integration, you need to create a **Google Client ID** from the *
 
 - Enter Name: e.g. Tabsy Web
 - In the **Authorised JavaScript origins** section, add the app’s URL.
-    - URL: <a href="https://tabsy.artisanscloud.com.my/" target="_blank" rel="noopener noreferrer">https://tabsy.artisanscloud.com.my</a>
+    - URL: [https://tabsy.artisanscloud.com.my](https://tabsy.artisanscloud.com.my/)
 - In the **Authorised redirect URIs** section, add the app’s URL.
-    - URL: <a href="https://tabsy.artisanscloud.com.my/" target="_blank" rel="noopener noreferrer">https://tabsy.artisanscloud.com.my</a>
+    - URL: [https://tabsy.artisanscloud.com.my](https://tabsy.artisanscloud.com.my/)
 - Click on **Create**.
 
     ![Create-OAuth-client-ID--Google-Auth-Platform--Test-Project--Google-Cloud-console-11-10-2025_04_05_PM.png](/images/docs/settings/google-api-integration/2025-11-17T07:14:00.000Z-14.png)
