@@ -1,7 +1,6 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import Link from 'next/link'
 import clsx from 'clsx'
 import { Logo, Logomark } from '@/components/Logo'
 import { MobileNavigation } from '@/components/MobileNavigation'
@@ -36,10 +35,10 @@ function Header() {
         <MobileNavigation />
       </div>
       <div className="relative flex grow basis-0 items-center">
-        <Link href="/" aria-label="Home page" className="flex gap-3">
+        <a href="https://tabsy.artisanscloud.com.my/sales" target="_blank" rel="noopener noreferrer" aria-label="TabsyPOS Sales" className="flex gap-3">
           <Logomark className="h-9 w-9 lg:hidden" />
           <Logo className="hidden h-9 w-auto fill-slate-700 lg:block dark:fill-sky-100" />
-        </Link>
+        </a>
       </div>
       <div className="-my-5 mr-6 sm:mr-8 md:mr-0">
         <Search />
