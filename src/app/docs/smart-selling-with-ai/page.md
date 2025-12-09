@@ -12,7 +12,7 @@ TabsyPOS offers an **AI-driven cart creation feature** that lets you add multipl
 
 For example, you can type or speak:
 
-> "Pls add two Smartwatch for John Deo"
+> "Pls add two Bluetooth speaker for John Deo"
 
 The system will automatically:
 

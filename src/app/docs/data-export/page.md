@@ -16,8 +16,10 @@ You can export the following types of data:
 - **Sales Payments:** Payment information linked to each sale.
 - **Receipt Settings:** Customised receipt header and footer templates.
 - **Other Settings:** Store preferences such as **language**, **currency**, and **AI model configuration**.
-> Tip: For enhanced data security, you can back up your exported files to Google Drive directly from this section, ensuring your store information is safely stored and easily restorable whenever needed.
+> Tip: For enhanced data security, you can back up your exported files to Google Drive directly from this section, ensuring your store information is safely stored and easily restorable whenever needed.  
+>   
+> Before using this feature, make sure your [**Google API configuration**](/2abe0e7ddffa80fa81aee015c97a9c02#2aee0e7ddffa803b9678dcdab05b8933) is correctly set up in the system settings.
 
-![TabsyPOS-Smart-POS-System-11-12-2025_11_16_AM.png](/images/docs/data/data-export/2025-11-17T07:14:00.000Z.png)
+![TabsyPOS-Smart-POS-System-12-01-2025_12_15_PM.png](/images/docs/data/data-export/2025-12-01T06:45:00.000Z.png)
 
 

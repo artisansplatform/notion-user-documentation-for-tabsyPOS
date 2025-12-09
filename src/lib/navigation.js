@@ -143,14 +143,6 @@ export const navigation = [
         "href": "/docs/overview-settings-module"
       },
       {
-        "title": "Language",
-        "href": "/docs/language"
-      },
-      {
-        "title": "AI Models",
-        "href": "/docs/ai-models"
-      },
-      {
         "title": "Receipt Customisation",
         "href": "/docs/receipt-customisation"
       },
@@ -159,20 +151,28 @@ export const navigation = [
         "href": "/docs/currency"
       },
       {
-        "title": "Keyboard Shortcuts",
-        "href": "/docs/keyboard-shortcuts"
-      },
-      {
-        "title": "Clear Data",
-        "href": "/docs/clear-data"
-      },
-      {
         "title": "Google API Integration",
         "href": "/docs/google-api-integration"
       },
       {
         "title": "Firebase Integration (For Data Syncing)",
         "href": "/docs/firebase-integration-for-data-syncing"
+      },
+      {
+        "title": "Keyboard Shortcuts",
+        "href": "/docs/keyboard-shortcuts"
+      },
+      {
+        "title": "AI Model",
+        "href": "/docs/ai-model"
+      },
+      {
+        "title": "Language",
+        "href": "/docs/language"
+      },
+      {
+        "title": "Data",
+        "href": "/docs/data"
       }
     ]
   }

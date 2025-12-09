@@ -12,7 +12,7 @@
 **Google Drive Integration**
 
 
-TabsyPOS allows seamless integration with **Google Drive** for secure data backup.
+TabsyPOS seamlessly integrates with **Google Drive** for secure data backup.
 
 
 To enable this integration, you need to create a **Google Client ID** from the **Google Cloud Console**. Follow the steps below to complete the setup.
@@ -22,7 +22,7 @@ To enable this integration, you need to create a **Google Client ID** from the *
 
 - Go to the [**Google Cloud Console**](https://console.cloud.google.com/).
 - If you don’t have a project, click **“Create Project.”**
-- Enter a project name — for example: **TabsyPOS** — and click **Create**.
+- Enter a project name - for example: **TabsyPOS** - and click **Create**.
 - Location (Organisation), You can leave this as the default.
 
     ![New-Project--Google-Cloud-console-11-10-2025_03_51_PM.png](/images/docs/settings/google-api-integration/2025-11-26T09:26:00.000Z.png)
