@@ -10,7 +10,13 @@ To remove a product, click the **delete icon** next to the item in the cart. The
 - **Audio Mode**
 
     You can use **Audio Mode** to add items to the cart one by one using **voice commands**. This feature allows hands-free operation, making it easier to process sales in busy store environments.
+
+
+    {% video src="/videos/docs/cart/cart-management/2025-12-11T12:14:00.000Z.mp4" /%}
+
+
     
+
 
 - **Add Items to Cart by Scanning Barcode**
 You can use **Scan Mode** to add items to the cart by scanning product barcodes. Click on the **camera icon**, show the barcode in front of the camera, and the system will automatically detect and add the item to the cart.
