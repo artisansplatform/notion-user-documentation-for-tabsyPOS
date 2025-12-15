@@ -492,30 +492,11 @@ async function processImagesInMarkdown(content, h1Slug, h2Slug) {
  * @returns {Promise<string>} - The processed markdown with local video paths and HTML5 video tags
  */
 async function processVideosInMarkdown(content, h1Slug, h2Slug) {
-  // Match video links that notion-to-md converts (usually as links or embedded content)
-  // Common patterns: [video_name](url), direct URLs, or embedded syntax
-  const videoUrlRegex = /(https?:\/\/[^\s\)]+\.(mp4|mov|webm|avi|mkv|flv|wmv|m4v|3gp)(\?[^\s\)]*)?)/gi;
-  const videos = [];
-  let match;
-
-  // Find all video URLs
-  while ((match = videoUrlRegex.exec(content)) !== null) {
-    videos.push({
-      url: match[1]
-    });
-  }
-
-  // Download all videos and replace with HTML5 video tags
-  for (const video of videos) {
-    const localPath = await downloadVideo(video.url, h1Slug, h2Slug);
-    // Replace the URL with HTML5 video tag
-    const videoTag = `<video src="${localPath}" controls style="max-width: 100%; height: auto;"></video>`;
-    content = content.replace(video.url, videoTag);
-  }
-
-  // Also handle markdown link syntax that might contain videos: [text](video_url)
+  // 1. Handle markdown link syntax: [text](video_url)
+  // We process these FIRST to prevent the URL regex from breaking the markdown links
   const markdownVideoRegex = /\[([^\]]*)\]\((https?:\/\/[^\)]+\.(mp4|mov|webm|avi|mkv|flv|wmv|m4v|3gp)(\?[^\)]*)?)\)/gi;
   const markdownVideos = [];
+  let match;
   
   while ((match = markdownVideoRegex.exec(content)) !== null) {
     markdownVideos.push({
@@ -527,8 +508,26 @@ async function processVideosInMarkdown(content, h1Slug, h2Slug) {
 
   for (const video of markdownVideos) {
     const localPath = await downloadVideo(video.url, h1Slug, h2Slug);
-    const videoTag = `<video src="${localPath}" controls style="max-width: 100%; height: auto;"></video>`;
+    const videoTag = `{% video src="${localPath}" /%}`;
     content = content.replace(video.fullMatch, videoTag);
+  }
+
+  // 2. Handle direct URLs
+  // Match video links that notion-to-md converts (usually as links or embedded content)
+  // Common patterns: [video_name](url), direct URLs, or embedded syntax
+  const videoUrlRegex = /(https?:\/\/[^\s\)]+\.(mp4|mov|webm|avi|mkv|flv|wmv|m4v|3gp)(\?[^\s\)]*)?)/gi;
+  const videos = [];
+
+  while ((match = videoUrlRegex.exec(content)) !== null) {
+    videos.push({
+      url: match[1]
+    });
+  }
+
+  for (const video of videos) {
+    const localPath = await downloadVideo(video.url, h1Slug, h2Slug);
+    const videoTag = `{% video src="${localPath}" /%}`;
+    content = content.replace(video.url, videoTag);
   }
 
   return content;
