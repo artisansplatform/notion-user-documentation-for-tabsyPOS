@@ -1,5 +1,6 @@
 import { Callout } from '@/components/Callout'
 import { QuickLink, QuickLinks } from '@/components/QuickLinks'
+import { Video } from '@/components/Video'
 import { ZoomableImage } from '@/components/ZoomableImage'
 import Zoom from 'react-medium-image-zoom'
 import 'react-medium-image-zoom/dist/styles.css'
@@ -38,6 +39,14 @@ const tags = {
       icon: { type: String },
       href: { type: String },
     },
+  },
+  video: {
+    selfClosing: true,
+    attributes: {
+      src: { type: String },
+      controls: { type: Boolean, default: true },
+    },
+    render: Video,
   },
 }
 
