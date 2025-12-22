@@ -175,5 +175,38 @@ export const navigation = [
         "href": "/docs/data"
       }
     ]
+  },
+  {
+    "title": "Frequently Asked Questions",
+    "links": [
+      {
+        "title": "General",
+        "href": "/docs/general"
+      },
+      {
+        "title": "Setup & Access",
+        "href": "/docs/setup-access"
+      },
+      {
+        "title": "Offline & Reliability",
+        "href": "/docs/offline-reliability"
+      },
+      {
+        "title": "Features & Capabilities",
+        "href": "/docs/features-capabilities"
+      },
+      {
+        "title": "Security & Data",
+        "href": "/docs/security-data"
+      },
+      {
+        "title": "Customisation & Control",
+        "href": "/docs/customisation-control"
+      },
+      {
+        "title": "",
+        "href": "/docs/"
+      }
+    ]
   }
 ]
