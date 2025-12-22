@@ -6,9 +6,9 @@
 
 When you first open **TabsyPOS**, if your database is empty, you will see the following prompt on the **Home Page**:
 
-> "Your database is empty. Would you like to generate demo data to try out the application features?
+> Your database is empty. Would you like to generate demo data to try out the application features?
 >
-> Note: You can reset data from the Settings page."
+> Note: You can reset data from the Settings page.
 >
 >
 
