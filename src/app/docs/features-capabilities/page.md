@@ -4,9 +4,9 @@
 
 
 <details>
-<summary>**What are the core features of Tabsy POS?**</summary>
+<summary>**What are the core features of TabsyPOS?**</summary>
 
-Tabsy POS offers a **simple yet powerful set of features** for single-store retailers:
+TabsyPOS offers a **simple yet powerful set of features** for single-store retailers:
 
 - **Fast and Intuitive Billing:** Quickly process sales with minimal clicks.
 - **Audio Mode:** Use voice commands for billing and product searches.
@@ -16,15 +16,15 @@ Tabsy POS offers a **simple yet powerful set of features** for single-store reta
 - **Multiple Payment Methods:** Accept cash, cards, and digital payments seamlessly.
 - **Receipt Generation:** Generate and download receipts instantly.
 - **Offline POS Support:** Continue billing without internet, with automatic sync when online.
-- **Browser-Based Access:** Use Tabsy POS on any device with a modern web browser—no installation required.
+- **Browser-Based Access:** Use TabsyPOS on any device with a modern web browser—no installation required.
 - **Data Backup Options:** Automatic Firebase backup with optional Google Drive export for enhanced security.
 
 </details>
 
 <details>
-<summary>**How does Tabsy POS compare to traditional POS systems?**</summary>
+<summary>**How does TabsyPOS compare to traditional POS systems?**</summary>
 
-Unlike traditional POS systems, Tabsy POS is **browser-based**, requires **no installation**, and supports **offline billing**, making it more flexible and easier to maintain.
+Unlike traditional POS systems, TabsyPOS is **browser-based**, requires **no installation**, and supports **offline billing**, making it more flexible and easier to maintain.
 
 
 </details>
