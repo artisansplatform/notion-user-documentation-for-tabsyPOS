@@ -6,7 +6,7 @@
 <details>
 <summary>**Can TabsyPOS be customised to our business needs?**</summary>
 
-Yes. Tabsy POS offers **configurable settings** that allow businesses to tailor workflows and operational preferences.
+Yes. TabsyPOS offers **configurable settings** that allow businesses to tailor workflows and operational preferences.
 
 
 </details>

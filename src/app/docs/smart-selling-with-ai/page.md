@@ -29,7 +29,7 @@ This feature simplifies billing during busy hours and reduces manual steps, allo
 **AI Model Capabilities and Usage**
 
 
-Tabsy POS allows you to use AI-powered search and **cart creation** to speed up your sales process. Using natural language commands in the search bar, you can add multiple products to the cart and assign customers in a single instruction.
+TabsyPOS allows you to use AI-powered search and **cart creation** to speed up your sales process. Using natural language commands in the search bar, you can add multiple products to the cart and assign customers in a single instruction.
 
 
 **AI Usage Guidelines**

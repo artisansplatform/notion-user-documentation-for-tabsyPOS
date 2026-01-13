@@ -5,7 +5,7 @@
 
 
 
-Tabsy POS offers **OpenRouter** AI model options that power **intelligent product search** and **AI-powered cart creation**.
+TabsyPOS offers **OpenRouter** AI model options that power **intelligent product search** and **AI-powered cart creation**.
 
 > **Note:** Voice recognition is browser-based and does not rely on any AI model.
 
@@ -47,7 +47,7 @@ Follow the steps below to set up the OpenRouter API Key:
 
 ![OpenRouter-12-08-2025_11_19_AM_%281%29.png](/images/docs/settings/ai-model/2025-12-08T05:50:00.000Z.png)
 
-- In **Tabsy POS**, go to **Settings → AI Model**.
+- In **TabsyPOS**, go to **Settings → AI Model**.
 
 ![TabsyPOS-Smart-POS-System-12-08-2025_11_04_AM.png](/images/docs/settings/ai-model/2025-12-08T05:35:00.000Z.png)
 

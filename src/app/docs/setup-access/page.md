@@ -6,7 +6,7 @@
 <details>
 <summary>**Do I need to install any software to use TabsyPOS?**</summary>
 
-No. Tabsy POS requires **no installation**. It can be accessed directly through a web browser on supported devices.
+No. TabsyPOS requires **no installation**. It can be accessed directly through a web browser on supported devices.
 
 
 </details>
@@ -14,7 +14,7 @@ No. Tabsy POS requires **no installation**. It can be accessed directly through 
 <details>
 <summary>**What devices are supported?**</summary>
 
-Tabsy POS works on **desktops, laptops, and tablets**, as long as they have a modern web browser.
+TabsyPOS works on **desktops, laptops, and tablets**, as long as they have a modern web browser.
 
 
 </details>
