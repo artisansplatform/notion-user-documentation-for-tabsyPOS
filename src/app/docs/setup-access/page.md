@@ -3,28 +3,16 @@
 ## **Setup & Access**
 
 
-<details>
-<summary>**Do I need to install any software to use TabsyPOS?**</summary>
+1. **Do I need to install any software to use TabsyPOS?**
 
-No. TabsyPOS requires **no installation**. It can be accessed directly through a web browser on supported devices.
+    No. TabsyPOS requires **no installation**. It can be accessed directly through a web browser on supported devices.
 
+2. **What devices are supported?**
 
-</details>
+    TabsyPOS works on **desktops, laptops, and tablets**, as long as they have a modern web browser.
 
-<details>
-<summary>**What devices are supported?**</summary>
+3. **How quickly can we get started?**
 
-TabsyPOS works on **desktops, laptops, and tablets**, as long as they have a modern web browser.
-
-
-</details>
-
-<details>
-<summary>**How quickly can we get started?**</summary>
-
-Since there is no installation involved, onboarding is **quick and straightforward**, allowing businesses to go live in a short time.
-
-
-</details>
+    Since there is no installation involved, onboarding is **quick and straightforward**, allowing businesses to go live in a short time.
 
 

@@ -3,20 +3,12 @@
 ## **Customisation & Control**
 
 
-<details>
-<summary>**Can TabsyPOS be customised to our business needs?**</summary>
+1. **Can TabsyPOS be customised to our business needs?**
 
-Yes. TabsyPOS offers **configurable settings** that allow businesses to tailor workflows and operational preferences.
+    Yes. TabsyPOS offers **configurable settings** that allow businesses to tailor workflows and operational preferences.
 
+2. **Can receipts be downloaded or shared?**
 
-</details>
-
-<details>
-<summary>**Can receipts be downloaded or shared?**</summary>
-
-Yes. Receipts can be **generated, viewed, and downloaded** directly from the system as needed.
-
-
-</details>
+    Yes. Receipts can be **generated, viewed, and downloaded** directly from the system as needed.
 
 
