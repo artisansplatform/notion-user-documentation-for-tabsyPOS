@@ -163,8 +163,8 @@ export const navigation = [
         "href": "/docs/keyboard-shortcuts"
       },
       {
-        "title": "AI Model",
-        "href": "/docs/ai-model"
+        "title": "AI Assistant",
+        "href": "/docs/ai-assistant"
       },
       {
         "title": "Language",
