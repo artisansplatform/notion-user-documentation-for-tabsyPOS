@@ -11,6 +11,14 @@ export const navigation = [
         "href": "/docs/overview"
       },
       {
+        "title": "Install TabsyPOS as an App (Desktop & Mobile)",
+        "href": "/docs/install-tabsypos-as-an-app-desktop-mobile"
+      },
+      {
+        "title": "Online / Offline Status Indicator",
+        "href": "/docs/online-offline-status-indicator"
+      },
+      {
         "title": "Quick Start",
         "href": "/docs/quick-start"
       },
@@ -26,6 +34,14 @@ export const navigation = [
       {
         "title": "Product Discovery & Selection",
         "href": "/docs/product-discovery-selection"
+      },
+      {
+        "title": "Automatic Stock Deduction on Sales",
+        "href": "/docs/automatic-stock-deduction-on-sales"
+      },
+      {
+        "title": "Stock Warning During Sales",
+        "href": "/docs/stock-warning-during-sales"
       },
       {
         "title": "Smart Selling with AI",
@@ -81,6 +97,39 @@ export const navigation = [
       {
         "title": "Search",
         "href": "/docs/search"
+      },
+      {
+        "title": "Stock Column",
+        "href": "/docs/stock-column"
+      },
+      {
+        "title": "Product Filters",
+        "href": "/docs/product-filters"
+      }
+    ]
+  },
+  {
+    "title": "Inventory Management",
+    "links": [
+      {
+        "title": "Start Managing Stock",
+        "href": "/docs/start-managing-stock"
+      },
+      {
+        "title": "Stop Managing Stock",
+        "href": "/docs/stop-managing-stock"
+      },
+      {
+        "title": "Inventory Update History",
+        "href": "/docs/inventory-update-history"
+      },
+      {
+        "title": "Low Stock Threshold",
+        "href": "/docs/low-stock-threshold"
+      },
+      {
+        "title": "Out of Stock & No Stock Alerts",
+        "href": "/docs/out-of-stock-no-stock-alerts"
       }
     ]
   },
@@ -163,6 +212,10 @@ export const navigation = [
         "href": "/docs/keyboard-shortcuts"
       },
       {
+        "title": "Keyboard-Friendly Enter Key Support",
+        "href": "/docs/keyboard-friendly-enter-key-support"
+      },
+      {
         "title": "AI Assistant",
         "href": "/docs/ai-assistant"
       },
@@ -173,6 +226,27 @@ export const navigation = [
       {
         "title": "Data",
         "href": "/docs/data"
+      }
+    ]
+  },
+  {
+    "title": "Notification Center",
+    "links": [
+      {
+        "title": "Accessing the Notification Center",
+        "href": "/docs/accessing-the-notification-center"
+      },
+      {
+        "title": "Whats Hot",
+        "href": "/docs/whats-hot"
+      },
+      {
+        "title": "Notifications",
+        "href": "/docs/notifications"
+      },
+      {
+        "title": "Subscribe",
+        "href": "/docs/subscribe"
       }
     ]
   },
