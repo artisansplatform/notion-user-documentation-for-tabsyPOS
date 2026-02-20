@@ -4,7 +4,7 @@
 
 
 
-TabsyPOS now displays real-time connectivity status.
+TabsyPOS displays real-time connectivity status.
 
 - 🟢 **Online** – System is connected and syncing data.
 - 🔴 **Offline** – No internet connection. Some features may be limited.

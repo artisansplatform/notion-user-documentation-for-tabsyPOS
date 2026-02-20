@@ -13,7 +13,7 @@ TabsyPOS combines **AI-powered convenience** with **offline reliability**, givin
 - **AI-Driven POS** – Use smart voice commands and instant search for products and customers.
 - **Works Without Wi-Fi** – Continue billing and managing sales even if your internet is down.
 - **No Installation Needed** – Access from any browser, on any device.
-- **Complete Retail Control** – Manage products, customers, payments, receipts, and data backup.
+- **Complete Retail Control** – Manage products, Stock, Customers, Payments, Receipts, and data backup.
 - **Customisable Settings** – Choose your language, currency, and receipt style.
 
 ---
