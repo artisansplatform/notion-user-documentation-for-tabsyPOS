@@ -22,11 +22,9 @@ To remove a product, click the **delete icon** next to the item in the cart. The
 You can use **Scan Mode** to add items to the cart by scanning product barcodes. Click on the **camera icon**, show the barcode in front of the camera, and the system will automatically detect and add the item to the cart.
 
 **Scan Mode** also supports **continuous scanning**, allowing you to scan multiple products one after another without manually tapping anything — making the billing process faster and more efficient.
-
 >   
 > **Note:** Scan Mode currently supports **Code-128 barcode format only**.  
 > 
-
 - **Reset Price to Original**
 If a product’s price has been manually changed in the cart, you can quickly revert it to its original listed price. Click the **Reset to Original** button on the edit cart popup, and the system will automatically restore the original product price as defined in the product list.
 - **Clear Cart**

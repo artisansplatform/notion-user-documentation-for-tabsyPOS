@@ -11,7 +11,7 @@ You can view:
 
 - Date of update
 - Quantity added/adjusted
-- Reason (if applicable)
+- Reason (if provided)
 - Updated stock balance
 
 This ensures transparency and traceability.

@@ -44,8 +44,12 @@ export const navigation = [
         "href": "/docs/stock-warning-during-sales"
       },
       {
-        "title": "Smart Selling with AI",
-        "href": "/docs/smart-selling-with-ai"
+        "title": "Chat-Based Sales",
+        "href": "/docs/chat-based-sales"
+      },
+      {
+        "title": "Smart Selling with AI (Coming Soon)",
+        "href": "/docs/smart-selling-with-ai-coming-soon"
       }
     ]
   },

@@ -4,7 +4,7 @@
 
 
 
-All dialog forms now support the **Enter key** for submission.
+All dialog forms support the **Enter key** for submission.
 
 
 Users no longer need to use the mouse to confirm actions.
