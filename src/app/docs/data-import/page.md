@@ -4,7 +4,7 @@
 
 
 
-The **Data Import** feature allows you to **restore or update** your store data from previously exported files — ideal for recovering data, transferring between devices, or synchronising information.
+The **Data Import** feature allows you to **restore or update** your store data from previously exported files - ideal for recovering data, transferring between devices, or synchronising information.
 
 
 You can import the following types of data:

@@ -18,10 +18,17 @@ TabsyPOS offers multiple ways to search for products quickly and efficiently.
 **Instant Product Creation**
 
 - If the searched product doesn’t exist in the system, you can **create it instantly** without leaving the Sales page.
-- Simply click on  **“Add New Product”**  — enter the product name and price, and it will be automatically added to your Product List
+- Simply click on  **“Add New Product”** - enter the product name and price, and it will be automatically added to your Product List.
+- Products also support an optional SKU (Stock Keeping Unit), Low Stock Threshold, and Stock Quantity fields.
 
 ![TabsyPOS-Smart-POS-System-11-28-2025_08_53_AM.png](/images/docs/sales-module/product-discovery-selection/2025-11-28T03:23:00.000Z.png)
 
+
+**Notes -** 
+
+- SKU must be unique across all products
+- Products can be searched by SKU in the sales search bar
+- SKU is shown in the product list
 
 ---
 

@@ -1,6 +1,6 @@
 # Sales Module
 
-## Smart Selling with AI
+## Smart Selling with AI 
 
 
 
@@ -10,11 +10,16 @@
 TabsyPOS offers an **AI-driven cart creation feature** that lets you add multiple products and assign customers in a single command.
 
 
-For example, you can type or speak:
+**The AI chatbot supports:**
 
-> "Pls add two Bluetooth speaker for John Deo"
+- Adding products by natural language (e.g., "Add 2 Smartwatches")
+- Removing products (e.g., "Remove 1 Laptop")
+- Setting customer (e.g., "Set customer to John Doe")
+- Selecting payment method (e.g., "Payment method Cash")
+- Completing checkout (e.g., "Checkout")
+- Full conversational workflow combining all of the above
 
-The system will automatically:
+**The system will automatically:**
 
 - Add the specified **products** with the requested **quantities** to the cart.
 - Assign the **customer** to the cart.
