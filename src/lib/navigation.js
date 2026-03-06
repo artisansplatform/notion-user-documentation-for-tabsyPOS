@@ -48,8 +48,53 @@ export const navigation = [
         "href": "/docs/chat-based-sales"
       },
       {
-        "title": "Smart Selling with AI (Coming Soon)",
-        "href": "/docs/smart-selling-with-ai-coming-soon"
+        "title": "Smart Selling with AI",
+        "href": "/docs/smart-selling-with-ai"
+      }
+    ]
+  },
+  {
+    "title": "Return",
+    "links": [
+      {
+        "title": "Return Overview",
+        "href": "/docs/return-overview"
+      },
+      {
+        "title": "Return Policies and Controls",
+        "href": "/docs/return-policies-and-controls"
+      },
+      {
+        "title": "Inventory Handling During Returns",
+        "href": "/docs/inventory-handling-during-returns"
+      },
+      {
+        "title": "Refund Handling",
+        "href": "/docs/refund-handling"
+      },
+      {
+        "title": "Return Receipts",
+        "href": "/docs/return-receipts"
+      },
+      {
+        "title": "Return History",
+        "href": "/docs/return-history"
+      },
+      {
+        "title": "Void a Return",
+        "href": "/docs/void-a-return"
+      },
+      {
+        "title": "Sales and Returns Totals",
+        "href": "/docs/sales-and-returns-totals"
+      },
+      {
+        "title": "Reports and Data Export",
+        "href": "/docs/reports-and-data-export"
+      },
+      {
+        "title": "Print Return Receipt",
+        "href": "/docs/print-return-receipt"
       }
     ]
   },
@@ -172,6 +217,22 @@ export const navigation = [
       {
         "title": "Sales History",
         "href": "/docs/sales-history"
+      },
+      {
+        "title": "Void Sale",
+        "href": "/docs/void-sale"
+      },
+      {
+        "title": "What Happens When a Sale is Voided",
+        "href": "/docs/what-happens-when-a-sale-is-voided"
+      },
+      {
+        "title": "Restrictions",
+        "href": "/docs/restrictions"
+      },
+      {
+        "title": "Return History",
+        "href": "/docs/return-history"
       }
     ]
   },
@@ -202,6 +263,10 @@ export const navigation = [
       {
         "title": "Currency",
         "href": "/docs/currency"
+      },
+      {
+        "title": "Return Settings",
+        "href": "/docs/return-settings"
       },
       {
         "title": "Google API Integration",
